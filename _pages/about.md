@@ -103,30 +103,30 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 
 <div style="margin-bottom: 25px;">
   <div style="display: flex; justify-content: space-between; align-items: baseline;">
-    <span style="font-weight: 600; font-size: 1.1em; color: #222;">[HKUST (Guangzhou)]</span>
-    <span style="font-size: 0.9em; color: #666; font-style: italic;">[July. 2025 - Present]</span>
+    <span style="font-weight: 600; font-size: 1.1em; color: #222;">HKUST (Guangzhou)</span>
+    <span style="font-size: 0.9em; color: #666; font-style: italic;">July. 2025 - Present</span>
   </div>
   <div style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
-    <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">[Research Assistant]</span>
-    <span style="color: #444; font-size: 0.95em;">@ <a href="https://sites.google.com/view/haoangli/homepage" target="_blank" style="color: #0366d6; text-decoration: none;">[Intelligent Robot Perception and Navigation Lab]</a></span>
+    <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Research Assistant</span>
+    <span style="color: #444; font-size: 0.95em;">@ <a href="https://sites.google.com/view/haoangli/homepage" target="_blank" style="color: #0366d6; text-decoration: none;">Intelligent Robot Perception and Navigation Lab</a></span>
   </div>
   <div style="margin-top: 8px; color: #444; font-size: 0.95em; line-height: 1.5;">
-    <strong>Research Topic:</strong> [VLA] <br>
+    <strong>Research Topic:</strong> VLA <br>
     <strong>Advisor:</strong> Prof. <a href="https://sites.google.com/view/haoangli/homepage" target="_blank" style="color: #0366d6; text-decoration: none;">Haoang Li</a>
   </div>
 </div>
 
 <div style="margin-bottom: 25px;">
   <div style="display: flex; justify-content: space-between; align-items: baseline;">
-    <span style="font-weight: 600; font-size: 1.1em; color: #222;">National Undergraduate Training Program for Innovation and Entrepreneurship</span>
-    <span style="font-size: 0.9em; color: #666; font-style: italic;">[May. 2025 - Present]</span>
+    <span style="font-weight: 600; font-size: 1.1em; color: #222;">National Undergraduate Training Program for Innovation </span>
+    <span style="font-size: 0.9em; color: #666; font-style: italic;">May. 2025 - Present</span>
   </div>
   <div style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
-    <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">[Project Leader]</span>
+    <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Project Leader</span>
     <!-- <span style="color: #444; font-size: 0.95em;">@ <a href="[网址]" target="_blank" style="color: #0366d6; text-decoration: none;">[实验室或课题组]</a></span> -->
   </div>
   <div style="margin-top: 8px; color: #444; font-size: 0.95em; line-height: 1.5;">
-    <strong>Research Topic:</strong> [ Deep Learning-based Surgical Instrument Recognition System] <br>
+    <strong>Research Topic:</strong> Deep Learning-based Surgical Instrument Recognition System <br>
     <!-- <strong>Advisor:</strong> Prof. <a href="[网址]" target="_blank" style="color: #0366d6; text-decoration: none;">[导师姓名]</a> -->
   </div>
 </div>
