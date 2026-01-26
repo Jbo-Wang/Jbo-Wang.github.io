@@ -137,35 +137,14 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
   
   <!-- 奖项 1 -->
   <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
-    <span style="font-size: 1.2em; line-height: 1.2;">🥇</span>
+    <!-- <span style="font-size: 1.2em; line-height: 1.2;">🥇</span> -->
     <div>
-      <span style="font-weight: 500; color: #222;">[最高级别奖项名称，例如: Tencent Enterprise First Price Scholarship]</span>
-      <span style="color: #666; font-size: 0.9em; margin-left: 5px;">([年份，例如: 2023])</span>
+      <span style="font-weight: 500; color: #222;">The First Price Scholarship (twice)</span>
+      <span style="color: #666; font-size: 0.9em; margin-left: 5px;">2024, 2025</span>
       <!-- 重点高亮标签 -->
-      <span style="background: #fff3cd; color: #856404; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; margin-left: 6px; font-weight: 500;">
+      <!-- <span style="background: #fff3cd; color: #856404; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; margin-left: 6px; font-weight: 500;">
         [亮点数据，例如: 5k RMB, Top 2%]
-      </span>
-    </div>
-  </li>
-
-  <!-- 奖项 2 -->
-  <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
-    <span style="font-size: 1.2em; line-height: 1.2;">🥈</span>
-    <div>
-      <span style="font-weight: 500; color: #222;">[其他奖项名称]</span>
-      <span style="color: #666; font-size: 0.9em; margin-left: 5px;">([年份])</span>
-      <span style="background: #f0f0f0; color: #555; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; margin-left: 6px;">
-        [补充说明，例如: two times]
-      </span>
-    </div>
-  </li>
-
-  <!-- 奖项 3 -->
-  <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
-    <span style="font-size: 1.2em; line-height: 1.2;">🏅</span>
-    <div>
-      <span style="font-weight: 500; color: #222;">[荣誉称号，例如: Merit Student]</span>
-      <span style="color: #666; font-size: 0.9em; margin-left: 5px;">([年份])</span>
+      </span> -->
     </div>
   </li>
 
