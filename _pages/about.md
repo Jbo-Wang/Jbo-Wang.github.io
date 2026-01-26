@@ -15,6 +15,15 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 
 ---
 
+## Selected Publications
+{% for post in site.publications reversed limit: 3 %}
+  {% include archive-single-cv.html %}
+{% endfor %}
+
+[View all publications →](/publications/)
+
+---
+
 ## Educations
 **South China University of Technology** | *2023 - 2027*
 - Computer Science (Full English Teaching), Bachelor
