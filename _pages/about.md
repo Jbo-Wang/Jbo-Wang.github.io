@@ -18,15 +18,17 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 ## Selected Publications
 
 {% for post in site.publications reversed limit: 1 %}
-<div style="display: flex; gap: 20px; margin-bottom: 30px; align-items: flex-start;">
+<div style="display: flex; gap: 25px; margin-bottom: 30px; align-items: flex-start;">
 
   <!-- 左边: teaser 图片 -->
-  {% if post.header.teaser %}
-  <div style="flex: 0 0 300px;">
+  {% if post.teaser %}
+  <div style="flex: 0 0 280px;">
     {% if post.paperurl %}
     <a href="{{ post.paperurl }}" target="_blank">
     {% endif %}
-      <img src="{{ post.header.teaser | prepend: '/images/' }}" alt="{{ post.title }}" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <!-- 修改点：添加了更明显的阴影 box-shadow -->
+      <img src="{{ post.teaser | prepend: '/images/' }}" alt="{{ post.title }}" 
+           style="width: 100%; border-radius: 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.15); display: block;">
     {% if post.paperurl %}
     </a>
     {% endif %}
@@ -34,8 +36,9 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
   {% endif %}
 
   <!-- 右边: 标题和作者 -->
-  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-    <h3 style="margin: 0 0 15px 0; font-size: 1.4em;">
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-start;">
+    <!-- 修改点：标题字体调小 (1.15em)，行高压缩 -->
+    <h3 style="margin: 0 0 10px 0; font-size: 1.15em; line-height: 1.3;">
       {% if post.paperurl %}
         <a href="{{ post.paperurl }}" target="_blank" style="color: #0366d6; text-decoration: none;">
           {{ post.title }}
@@ -47,8 +50,15 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
       {% endif %}
     </h3>
 
-    {% if post.header.authors %}
-      <p style="margin: 0; color: #586069; font-size: 1em;">{{ post.header.authors }}</p>
+    {% if post.authors %}
+      <!-- 作者字体也稍微调小了一点点 -->
+      <p style="margin: 0; color: #586069; font-size: 0.95em;">{{ post.authors }}</p>
+    {% endif %}
+
+    {% if post.venue %}
+      <p style="margin: 5px 0 0 0; color: #24292e; font-size: 0.9em; font-weight: 500;">
+        {{ post.venue }}
+      </p>
     {% endif %}
   </div>
 

@@ -4,7 +4,7 @@ collection: publications
 category: conferences
 header:
   teaser: 'spatialforcing.png'
-  authors: 'Jingbo Wang, Haoang Li, Wenxuan Song, Han Zhao'
+  authors: 'Fuhao Li, Wenxuan Song, Han Zhao, <strong>Jingbo Wang</strong>, Pengxiang Ding, Donglin Wang, Long Zeng, Haoang Li'
 permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: 'This paper presents a novel method for implicit spatial representation alignment in vision-language-action models.'
 date: 2025-10-01
