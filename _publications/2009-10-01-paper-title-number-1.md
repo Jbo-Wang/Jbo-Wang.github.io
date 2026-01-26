@@ -12,5 +12,4 @@ paperurl: 'https://arxiv.org/abs/2510.12276'
 
 ---
 
-This paper introduces Spatial Forcing, a novel approach for aligning spatial representations in vision-language-action models, enabling more precise robotic manipulation and interaction with the physical world.
 
