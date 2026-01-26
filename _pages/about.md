@@ -15,7 +15,6 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 
 ---
 
-## Education
-**South China University of Technology** | *2022 - Present*
-- Major: Undergraduate
-- Interest: Robotics and AI
+## Educations
+**South China University of Technology** | *2023 - 2027*
+- Computer Science (Full English Teaching), Bachelor
