@@ -68,5 +68,34 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 ---
 
 ## Educations
-**South China University of Technology** | *2023 - 2027* |  Computer Science (Full English Teaching), Bachelor
+## Education
 
+<div style="display: flex; align-items: center; gap: 20px; margin-top: 20px; background: #f9f9f9; padding: 15px; border-radius: 10px;">
+  
+  <!-- 学校 Logo (请确保 images 文件夹下有 scut_logo.png) -->
+  <div style="flex: 0 0 60px;">
+    <img src="/images/scut.jpg" alt="SCUT Logo" style="width: 60px; height: 60px; object-fit: contain;">
+  </div>
+
+  <!-- 教育详情 -->
+  <div style="flex: 1;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <span style="font-weight: bold; font-size: 1.1em; color: #222;">South China University of Technology (SCUT)</span>
+      <span style="font-size: 0.9em; color: #666; font-style: italic;">Sept. 2023 - June 2027 (Expected)</span>
+    </div>
+    
+    <div style="margin-top: 5px; color: #444;">
+      Bachelor of Engineering in Computer Science (Full English Teaching Class)
+    </div>
+
+    <!-- GPA 标签排版 -->
+    <div style="margin-top: 8px; display: flex; gap: 10px;">
+      <span style="background: #eef4ff; color: #0366d6; padding: 2px 10px; border-radius: 15px; font-size: 0.85em; font-weight: 500; border: 1px solid #d0e1fd;">
+        GPA: 3.9x / 4.0  <!-- 这里填入你的真实 GPA -->
+      </span>
+      <span style="background: #fff; color: #555; padding: 2px 10px; border-radius: 15px; font-size: 0.85em; border: 1px solid #ddd;">
+        Rank: 2/34
+      </span>
+    </div>
+  </div>
+</div>
