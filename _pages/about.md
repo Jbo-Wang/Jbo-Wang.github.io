@@ -23,15 +23,19 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
   <!-- 左边: teaser 图片 -->
   {% if post.header.teaser %}
   <div style="flex: 0 0 300px;">
+    {% if post.paperurl %}
     <a href="{{ post.paperurl }}" target="_blank">
+    {% endif %}
       <img src="{{ post.header.teaser | prepend: '/images/' }}" alt="{{ post.title }}" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    {% if post.paperurl %}
     </a>
+    {% endif %}
   </div>
   {% endif %}
 
-  <!-- 右边: 论文简介 -->
-  <div style="flex: 1;">
-    <h3 style="margin: 0 0 10px 0;">
+  <!-- 右边: 标题和作者 -->
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+    <h3 style="margin: 0 0 15px 0; font-size: 1.4em;">
       {% if post.paperurl %}
         <a href="{{ post.paperurl }}" target="_blank" style="color: #0366d6; text-decoration: none;">
           {{ post.title }}
@@ -43,18 +47,8 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
       {% endif %}
     </h3>
 
-    {% if post.venue %}
-      <p style="margin: 5px 0; color: #666; font-style: italic;">{{ post.venue }}</p>
-    {% endif %}
-
-    {% if post.excerpt %}
-      <p style="margin: 10px 0; line-height: 1.6;">{{ post.excerpt }}</p>
-    {% endif %}
-
-    {% if post.paperurl %}
-      <a href="{{ post.paperurl }}" target="_blank" style="display: inline-block; margin-top: 10px; padding: 6px 12px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">
-        View Paper →
-      </a>
+    {% if post.header.authors %}
+      <p style="margin: 0; color: #586069; font-size: 1em;">{{ post.header.authors }}</p>
     {% endif %}
   </div>
 
@@ -64,5 +58,5 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 ---
 
 ## Educations
-**South China University of Technology** | *2023 - 2027*
-- Computer Science (Full English Teaching), Bachelor
+**South China University of Technology** | *2023 - 2027* | Computer Science (Full English Teaching), Bachelor
+
