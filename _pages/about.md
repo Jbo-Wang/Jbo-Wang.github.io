@@ -16,9 +16,11 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 ---
 
 ## Selected Publications
+<div class="grid__wrapper">
 {% for post in site.publications reversed limit: 3 %}
-  {% include archive-single-cv.html %}
+  {% include archive-single-cv.html type="grid" %}
 {% endfor %}
+</div>
 
 [View all publications →](/publications/)
 
