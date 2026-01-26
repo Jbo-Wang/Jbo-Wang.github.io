@@ -91,7 +91,7 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
     <!-- GPA 标签排版 -->
     <div style="margin-top: 8px; display: flex; gap: 10px;">
       <span style="background: #eef4ff; color: #0366d6; padding: 2px 10px; border-radius: 15px; font-size: 0.85em; font-weight: 500; border: 1px solid #d0e1fd;">
-        GPA: 3.9x / 4.0  <!-- 这里填入你的真实 GPA -->
+        GPA: 3.92 / 4.0  <!-- 这里填入你的真实 GPA -->
       </span>
       <span style="background: #fff; color: #555; padding: 2px 10px; border-radius: 15px; font-size: 0.85em; border: 1px solid #ddd;">
         Rank: 2/34
@@ -99,3 +99,77 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
     </div>
   </div>
 </div>
+
+## 🧑‍🔬 Experience
+
+<!-- 经历 1 -->
+<div style="margin-bottom: 25px;">
+  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+    <span style="font-weight: 600; font-size: 1.1em; color: #222;">[学校/公司名称，例如: HKUST (Guangzhou)]</span>
+    <span style="font-size: 0.9em; color: #666; font-style: italic;">[时间，例如: Oct. 2024 - Present]</span>
+  </div>
+  <div style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
+    <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">[职位，例如: Research Intern]</span>
+    <span style="color: #444; font-size: 0.95em;">@ <a href="[实验室网址]" target="_blank" style="color: #0366d6; text-decoration: none;">[实验室名称，例如: Data Intelligence Lab]</a></span>
+  </div>
+  <div style="margin-top: 8px; color: #444; font-size: 0.95em; line-height: 1.5;">
+    <strong>Research Topic:</strong> [研究课题名称，例如: Structured Reasoning combined with RAG] <br>
+    <strong>Advisor:</strong> Prof. <a href="[导师主页网址]" target="_blank" style="color: #0366d6; text-decoration: none;">[导师姓名]</a>
+  </div>
+</div>
+
+<!-- 经历 2 -->
+<div style="margin-bottom: 25px;">
+  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+    <span style="font-weight: 600; font-size: 1.1em; color: #222;">[第二段经历的机构名称]</span>
+    <span style="font-size: 0.9em; color: #666; font-style: italic;">[时间]</span>
+  </div>
+  <div style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
+    <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">[职位]</span>
+    <span style="color: #444; font-size: 0.95em;">@ <a href="[网址]" target="_blank" style="color: #0366d6; text-decoration: none;">[实验室或课题组]</a></span>
+  </div>
+  <div style="margin-top: 8px; color: #444; font-size: 0.95em; line-height: 1.5;">
+    <strong>Research Topic:</strong> [研究课题] <br>
+    <strong>Advisor:</strong> Prof. <a href="[网址]" target="_blank" style="color: #0366d6; text-decoration: none;">[导师姓名]</a>
+  </div>
+</div>
+
+## 🏆 Honors & Awards
+
+<ul style="list-style: none; padding-left: 0; margin-top: 15px;">
+  
+  <!-- 奖项 1 -->
+  <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+    <span style="font-size: 1.2em; line-height: 1.2;">🥇</span>
+    <div>
+      <span style="font-weight: 500; color: #222;">[最高级别奖项名称，例如: Tencent Enterprise First Price Scholarship]</span>
+      <span style="color: #666; font-size: 0.9em; margin-left: 5px;">([年份，例如: 2023])</span>
+      <!-- 重点高亮标签 -->
+      <span style="background: #fff3cd; color: #856404; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; margin-left: 6px; font-weight: 500;">
+        [亮点数据，例如: 5k RMB, Top 2%]
+      </span>
+    </div>
+  </li>
+
+  <!-- 奖项 2 -->
+  <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+    <span style="font-size: 1.2em; line-height: 1.2;">🥈</span>
+    <div>
+      <span style="font-weight: 500; color: #222;">[其他奖项名称]</span>
+      <span style="color: #666; font-size: 0.9em; margin-left: 5px;">([年份])</span>
+      <span style="background: #f0f0f0; color: #555; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; margin-left: 6px;">
+        [补充说明，例如: two times]
+      </span>
+    </div>
+  </li>
+
+  <!-- 奖项 3 -->
+  <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+    <span style="font-size: 1.2em; line-height: 1.2;">🏅</span>
+    <div>
+      <span style="font-weight: 500; color: #222;">[荣誉称号，例如: Merit Student]</span>
+      <span style="color: #666; font-size: 0.9em; margin-left: 5px;">([年份])</span>
+    </div>
+  </li>
+
+</ul>
