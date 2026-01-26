@@ -99,7 +99,7 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
   </div>
 </div>
 
-## 🧑‍🔬 Experience
+## Experience
 
 <div style="margin-bottom: 25px;">
   <div style="display: flex; justify-content: space-between; align-items: baseline;">
@@ -131,7 +131,7 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
   </div>
 </div>
 
-## 🏆 Honors & Awards
+## Honors & Awards
 
 <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
   
