@@ -23,6 +23,9 @@ main:
   - title: "Blog Posts"
     url: /year-archive/
     
+  - title: "Education"
+    url: /education/
+
   - title: "CV"
     url: /cv/
     
