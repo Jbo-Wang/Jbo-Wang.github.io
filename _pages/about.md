@@ -16,8 +16,49 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 ---
 
 ## Selected Publications
+
 {% for post in site.publications reversed limit: 1 %}
-  {% include archive-single-cv.html type="grid" %}
+<div style="display: flex; gap: 20px; margin-bottom: 30px; align-items: flex-start;">
+
+  <!-- 左边: teaser 图片 -->
+  {% if post.header.teaser %}
+  <div style="flex: 0 0 300px;">
+    <a href="{{ post.paperurl }}" target="_blank">
+      <img src="{{ post.header.teaser | prepend: '/images/' }}" alt="{{ post.title }}" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- 右边: 论文简介 -->
+  <div style="flex: 1;">
+    <h3 style="margin: 0 0 10px 0;">
+      {% if post.paperurl %}
+        <a href="{{ post.paperurl }}" target="_blank" style="color: #0366d6; text-decoration: none;">
+          {{ post.title }}
+        </a>
+      {% else %}
+        <a href="{{ post.url }}" style="color: #0366d6; text-decoration: none;">
+          {{ post.title }}
+        </a>
+      {% endif %}
+    </h3>
+
+    {% if post.venue %}
+      <p style="margin: 5px 0; color: #666; font-style: italic;">{{ post.venue }}</p>
+    {% endif %}
+
+    {% if post.excerpt %}
+      <p style="margin: 10px 0; line-height: 1.6;">{{ post.excerpt }}</p>
+    {% endif %}
+
+    {% if post.paperurl %}
+      <a href="{{ post.paperurl }}" target="_blank" style="display: inline-block; margin-top: 10px; padding: 6px 12px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">
+        View Paper →
+      </a>
+    {% endif %}
+  </div>
+
+</div>
 {% endfor %}
 
 ---
