@@ -19,7 +19,9 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 
 {% for post in site.publications reversed limit: 1 %}
 <div style="display: flex; gap: 25px; margin-bottom: 30px; align-items: flex-start;">
-
+ <p style="margin: 2px 0 0 0; color: #888; font-size: 0.8em; font-style: italic;">
+    * Equal contribution
+  </p>
   <!-- 左边: teaser 图片 -->
   {% if post.teaser %}
   <div style="flex: 0 0 280px;">
