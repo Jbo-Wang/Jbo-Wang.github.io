@@ -141,7 +141,7 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
   <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
     <!-- <span style="font-size: 1.2em; line-height: 1.2;">🥇</span> -->
     <div>
-      <span style="font-weight: 500; color: #222;">The First Price Scholarship (twice)</span>
+      <span style="font-weight: 500; color: #222;">The First Prize Scholarship (twice)</span>
       <span style="color: #666; font-size: 0.9em; margin-left: 5px;">2024, 2025</span>
       <!-- 重点高亮标签 -->
       <!-- <span style="background: #fff3cd; color: #856404; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; margin-left: 6px; font-weight: 500;">
