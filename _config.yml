@@ -23,7 +23,7 @@ repository               : "https://jbo-wang.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "selfile.jpg"
+  avatar           : "self.jpg"
   name             : "Jingbo Wang"
   pronouns         : # example: "she/her"  
   bio              : "A robotics and physical world enthusiast. "

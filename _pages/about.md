@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of [Haoang Li](https://sites.google.com/view/haoangli/homepage). I also work closely with [Wenxuan Song](https://songwxuan.github.io/) and [Han Zhao](https://h-zhao1997.github.io/), whose guidance and support have been invaluable to my research.
+I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of [Haoang Li](https://sites.google.com/view/haoangli/homepage). I am also a research assistant at AIR, Tsinghua University. I work closely with [Wenxuan Song](https://songwxuan.github.io/) and [Han Zhao](https://h-zhao1997.github.io/), whose guidance and support have been invaluable to my research.
 
 **Goal**: Pushing the boundaries of the world through robotics.
 
@@ -102,6 +102,21 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 </div>
 
 ## Experience
+
+<div style="margin-bottom: 25px;">
+  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+    <span style="font-weight: 600; font-size: 1.1em; color: #222;">Tsinghua University</span>
+    <span style="font-size: 0.9em; color: #666; font-style: italic;">Feb. 2026 - Present</span>
+  </div>
+  <div style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
+    <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Research Assistant</span>
+    <span style="color: #444; font-size: 0.95em;">@ <a href="https://yanwang202199.github.io/" target="_blank" style="color: #0366d6; text-decoration: none;">AI Industry Research (AIR)</a></span>
+  </div>
+  <div style="margin-top: 8px; color: #444; font-size: 0.95em; line-height: 1.5;">
+    <strong>Research Topic:</strong> World Models <br>
+    <strong>Advisor:</strong> Prof. <a href="https://yanwang202199.github.io/" target="_blank" style="color: #0366d6; text-decoration: none;">Yan Wang</a>
+  </div>
+</div>
 
 <div style="margin-bottom: 25px;">
   <div style="display: flex; justify-content: space-between; align-items: baseline;">
