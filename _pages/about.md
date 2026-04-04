@@ -141,7 +141,7 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
   </div>
   <div style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
     <span style="background: #eef4ff; color: #0366d6; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Member</span>
-    <!-- <span style="color: #444; font-size: 0.95em;">@ <a href="[URL]" target="_blank" style="color: #0366d6; text-decoration: none;">[Lab/Team Name]</a></span> -->
+    <span style="color: #444; font-size: 0.95em;">@ <a href="https://github.com/OpenHelix-Team" target="_blank" style="color: #0366d6; text-decoration: none;">OpenHelix Team</a></span>
   </div>
   <div style="margin-top: 8px; color: #444; font-size: 0.95em; line-height: 1.5;">
     <strong>Research Topic:</strong> Robotics <br>
