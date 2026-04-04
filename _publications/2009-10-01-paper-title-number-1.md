@@ -2,6 +2,8 @@
 title: "Spatial Forcing: Implicit Spatial Representation Alignment For Vision-Language-Action Model"
 collection: publications
 category: conferences
+
+display_order: 4
 teaser: 'spatialforcing.png'
 authors: 'Fuhao Li, Wenxuan Song, Han Zhao, <strong>Jingbo Wang</strong>, Pengxiang Ding, Donglin Wang, Long Zeng, Haoang Li'
 permalink: /publication/2009-10-01-paper-title-number-1

@@ -2,6 +2,7 @@
 title: "FRAPPE: Infusing World Modeling into Generalist Policies via Multiple Future Representation Alignment"
 collection: publications
 category: conferences
+display_order: 5
 teaser: 'frappe.png'
 authors: 'Han Zhao<sup>*</sup>, <strong>Jingbo Wang</strong><sup>*</sup>, Wenxuan Song<sup>*</sup>, Shuai Chen, Yang Liu, Yan Wang, Haoang Li, Donglin Wang'
 permalink: /publication/2009-10-01-paper-title-number-2
