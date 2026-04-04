@@ -20,7 +20,7 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
     * Equal contribution
   </p>
 {% assign sorted_publications = site.publications | sort: "display_order" | reverse %}
-{% for post in sorted_publications limit: 2 %}
+{% for post in sorted_publications limit: 5 %}
 <div style="display: flex; gap: 25px; margin-bottom: 30px; align-items: flex-start;">
 
   <!-- 左边: teaser 图片 -->
