@@ -11,7 +11,7 @@ I am Jingbo Wang (王境博 in Chinese), a third-year undergraduate student at S
 
 **Goal**: Pushing the boundaries of the world through robotics.
 
-**Email**: guangtouchangkaishen@outlook.com
+**Email**: jbobowang@gmail.com
 
 ---
 
