@@ -278,8 +278,8 @@
       }
     });
     const photos = [
-      { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.', guide: 'One of us is a robot — hover the faces to find out.', zones: ['bot', 'me'] },
-      { src: 'images/self.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the left one.', guide: 'One of us is a robot — hover the faces to find out.', zones: ['me', 'bot'] },
+      { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.', zones: ['bot', 'me'] },
+      { src: 'images/self.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the left one.', zones: ['me', 'bot'] },
     ];
     let photoIndex = 0;
     const hoverable = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -287,10 +287,8 @@
     const photoCaption = document.querySelector('#photo-caption');
     const TIPS = { me: 'Yes, this is me.', bot: 'Beep boop — this is a bot.' };
     const setCaption = () => {
-      const photo = photos[photoIndex];
-      photoCaption.textContent = hoverable ? photo.guide : photo.caption;
+      photoCaption.textContent = photos[photoIndex].caption;
     };
-    if (hoverable) setCaption();
     document.querySelector('#next-photo').addEventListener('click', () => {
       photoIndex = (photoIndex + 1) % photos.length;
       const photo = photos[photoIndex];
