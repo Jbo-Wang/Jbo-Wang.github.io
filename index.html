@@ -112,7 +112,7 @@
     h2 { margin:0; font:normal clamp(38px,4.6vw,60px)/1.05 var(--font-serif); letter-spacing:-.045em; }
     main section h2::after { content:""; display:block; width:34px; height:5px; margin-top:13px; border-radius:3px; background:var(--green); }
     .paper-list { display:grid; }
-    .paper { display:grid; grid-template-columns:280px minmax(0,1fr); gap:36px; padding:36px 0; border-bottom:1px solid var(--line); }
+    .paper { display:grid; grid-template-columns:280px minmax(0,1fr); gap:36px; padding:36px 0; border-bottom:1px solid var(--line); scroll-margin-top:96px; }
     .paper-image { align-self:start; overflow:hidden; border-radius:10px; }
     .paper-image img { display:block; width:100%; height:190px; object-fit:contain; background:var(--thumb-bg); transition:transform .4s ease; }
     .paper:hover .paper-image img { transform:scale(1.03); }
@@ -152,6 +152,15 @@
     .misc h2 { margin-bottom:26px; }
     .misc ol { margin:0; padding:0; list-style:none; }
     .misc li { margin:0; padding:25px 0; border-top:1px solid var(--line); color:var(--muted); }
+    .work-rail { position:fixed; left:18px; top:50%; transform:translateY(-50%); z-index:30; display:flex; flex-direction:column; align-items:flex-start; gap:18px; opacity:0; visibility:hidden; transition:opacity .4s ease, visibility .4s; }
+    .work-rail.is-in { opacity:1; visibility:visible; }
+    .work-rail a { position:relative; display:flex; align-items:center; padding:3px 0; color:var(--muted); }
+    .work-rail .dot { width:5px; height:5px; border-radius:50%; background:var(--line-strong); transition:transform .25s ease, background-color .25s ease; }
+    .work-rail a:hover .dot, .work-rail a.is-active .dot { background:var(--accent); }
+    .work-rail a.is-active .dot { transform:scale(1.5); }
+    .work-rail .tag { position:absolute; left:14px; top:50%; transform:translate(-4px,-50%); opacity:0; pointer-events:none; white-space:nowrap; font-size:12.5px; font-weight:600; letter-spacing:.01em; transition:opacity .18s ease, transform .18s ease, color .18s ease; }
+    .work-rail a:hover .tag { opacity:1; transform:translate(0,-50%); color:var(--ink); }
+    @media (max-width:1300px) { .work-rail { display:none; } }
     footer { background:var(--green); color:#faf7ff; }
     footer .wrap { display:flex; justify-content:space-between; align-items:end; gap:24px; padding:49px 0; }
     footer h2 { font-size:42px; }
@@ -222,6 +231,7 @@
       </ol>
     </section>
   </main>
+  <nav class="work-rail" id="work-rail" aria-label="Selected work navigation"></nav>
   <footer id="contact"><div class="wrap"><div><h2>Let's make things move</h2></div><div class="right"><a href="mailto:jbobowang@gmail.com">jbobowang@gmail.com ↗</a><p class="site-credit">Thanks to my bro <a href="https://www.shuai-zhou.com/">Shuai Zhou</a> for the idea.</p><p>© Jingbo Wang</p></div></div></footer>
   <script>
     const gymFrame = document.querySelector('.hero-art iframe');
@@ -276,6 +286,54 @@
         syncGymTheme();
       }
     });
+    // Side rail for the Selected work list: appears while the section is on
+    // screen, tracks the paper being read, and jumps on click.
+    (function () {
+      const rail = document.getElementById('work-rail');
+      const section = document.getElementById('research');
+      if (!rail || !section) return;
+      const papers = Array.from(section.querySelectorAll('.paper'));
+      if (!papers.length) return;
+      const links = papers.map((paper, index) => {
+        const name = paper.querySelector('h3').textContent.split(':')[0].trim();
+        const link = document.createElement('a');
+        link.href = '#research';
+        link.setAttribute('aria-label', name);
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = name;
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        link.append(dot, tag);
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          paper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        rail.appendChild(link);
+        return link;
+      });
+      const setActive = () => {
+        const probe = innerHeight * 0.42;
+        let current = -1;
+        papers.forEach((paper, index) => {
+          if (paper.getBoundingClientRect().top <= probe) current = index;
+        });
+        links.forEach((link, index) => {
+          link.classList.toggle('is-active', index === current);
+          if (index === current) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      };
+      let railTick = 0;
+      addEventListener('scroll', () => {
+        cancelAnimationFrame(railTick);
+        railTick = requestAnimationFrame(setActive);
+      }, { passive: true });
+      setActive();
+      new IntersectionObserver(([entry]) => {
+        rail.classList.toggle('is-in', entry.isIntersecting);
+      }, { rootMargin: '-16% 0px -26% 0px' }).observe(section);
+    })();
     const photos = [
       { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.', zones: ['bot', 'me'], tips: { me: 'Yes, this is me.', bot: 'This is a bot.' } },
       { src: 'images/self.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the left one.', zones: ['me', 'bot'], tips: { me: 'Also me.', bot: 'Still a bot.' } },
