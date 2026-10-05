@@ -19,8 +19,7 @@
   </script>
   <meta name="description" content="Jingbo Wang is a fourth-year Computer Science undergraduate at SCUT working on robot learning — vision-language-action models and world models.">
   <link rel="canonical" href="https://jbo-wang.github.io/">
-  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="images/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="images/favicon-chiikawa.png" type="image/png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon-180x180.png">
   <meta name="theme-color" content="#f8f6fc">
   <meta property="og:type" content="website">
@@ -159,6 +158,9 @@
     .work-rail a:hover .tick, .work-rail a.is-active .tick { width:22px; background:var(--accent); }
     .work-rail .tag { position:absolute; left:calc(100% + 12px); top:50%; transform:translate(-4px,-50%); opacity:0; visibility:hidden; pointer-events:none; font:italic 400 16px/1 var(--font-serif); color:var(--muted); white-space:nowrap; transition:opacity .2s ease, transform .2s ease, visibility .2s, color .15s ease; }
     .work-rail a:hover .tag { opacity:1; visibility:visible; transform:translate(0,-50%); color:var(--ink); }
+    html[data-theme="dark"] .paper-image img, html[data-theme="dark"] .exp-logo, html[data-theme="dark"] .education-logo { opacity:.88; }
+    .reveal-ready .paper, .reveal-ready .exp, .reveal-ready .education-main { opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal-ready .is-revealed { opacity:1; transform:none; }
     @media (max-width:1300px) { .work-rail { display:none; } }
     footer { background:var(--green); color:#faf7ff; }
     footer .wrap { display:flex; justify-content:space-between; align-items:end; gap:24px; padding:49px 0; }
@@ -173,7 +175,7 @@
     @media (prefers-color-scheme: dark) {
       html:not([data-theme]) { --paper:#16131e; --white:#211c2f; --ink:#ece9f3; --muted:#a79eba; --line:#322c43; --line-strong:#3d3554; --nav-ink:#beb5d6; --art-bg:#231e33; --thumb-bg:#2a2440; --pill-bg:#ffffff12; --accent:#a99ce6; --green:#453a6b; --green-text:#b3a8e3; --footer-link:#8f83b8; color-scheme:dark; }
     }
-    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .exp.ongoing .role::before{animation:none} .paper-image img{transition:none} }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .exp.ongoing .role::before{animation:none} .paper-image img{transition:none} .reveal-ready .paper, .reveal-ready .exp, .reveal-ready .education-main { opacity:1; transform:none; transition:none; } }
   </style>
 </head>
 <body>
@@ -192,9 +194,9 @@
       <h1>Jingbo <em>Wang</em></h1>
       <div class="hero-copy">
         <p class="hero-intro">Pushing the boundaries of the world through robotics.</p>
-        <p class="hero-detail">I am Jingbo Wang, a fourth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. </p>
-        <!-- <p class="hero-detail">I am Jingbo Wang, a fourth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. I work closely with <a href="https://songwxuan.github.io/">Wenxuan Song</a>, whose guidance and support have been invaluable to my research.</p> -->
-        <div class="hero-links"><a class="pill primary" href="mailto:jbobowang@gmail.com">jbobowang@gmail.com <span aria-hidden="true">↗</span></a><a class="pill" href="https://scholar.google.com/citations?user=8l7kt3QAAAAJ&amp;hl=zh-CN">Google Scholar <span aria-hidden="true">↗</span></a><a class="pill" href="https://github.com/Jbo-Wang">GitHub <span aria-hidden="true">↗</span></a></div>
+        <p class="hero-detail">I am Jingbo Wang, a fourth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage" target="_blank" rel="noopener">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. </p>
+        <!-- <p class="hero-detail">I am Jingbo Wang, a fourth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage" target="_blank" rel="noopener">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. I work closely with <a href="https://songwxuan.github.io/" target="_blank" rel="noopener">Wenxuan Song</a>, whose guidance and support have been invaluable to my research.</p> -->
+        <div class="hero-links"><a class="pill primary" href="mailto:jbobowang@gmail.com">jbobowang@gmail.com <span aria-hidden="true">↗</span></a><a class="pill" href="https://scholar.google.com/citations?user=8l7kt3QAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a><a class="pill" href="https://github.com/Jbo-Wang" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></div>
       </div>
       <figure class="hero-photo"><button id="next-photo" type="button" aria-label="Show next photo"><img id="profile-photo" src="images/self2.jpg" alt="Jingbo Wang with a robot" width="960" height="1280" fetchpriority="high"><span class="photo-tip" id="photo-tip" aria-hidden="true"></span></button><figcaption aria-live="polite"><span id="photo-caption">I am the right one.</span></figcaption></figure>
     </div>
@@ -205,13 +207,13 @@
     <section class="content" id="research">
       <div class="section-head"><h2>Selected work</h2><p class="section-note">* Equal contribution</p></div>
       <div class="paper-list">
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2610.02054"><img src="images/uniwam.jpg" alt="UniWAM research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2610.02054">UniWAM: Unified World-Action Model</a></h3><p class="authors">Jiayi Chen*, Wenxuan Song*, <strong>Jingbo Wang</strong>*, Shuai Zhou, Xicheng Gong, Zehua Fan, Ziyang Zhou, Junwu E, Haodong Yan, Fuhao Li, Qize Yu, Xu Huang, Pengwei Wang, Wen Chen, Shunbo Zhou, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2610.02054">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2609.39526"><img src="images/df.png" alt="DF research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2609.39526">Discrete Forcing: Infusing Discrete Guidance into Continuous Denoising for Few-Step Action Experts</a></h3><p class="authors"><strong>Jingbo Wang</strong>, Wenxuan Song, Wenhao Yu, Han Zhao, Xi Wang, Jiayi Chen, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2609.39526">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2602.17259"><img src="images/frappe.png" alt="FRAPPE research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2602.17259">FRAPPE: Infusing World Modeling into Generalist Policies via Multiple Future Representation Alignment</a></h3><p class="authors">Han Zhao*, <strong>Jingbo Wang</strong>*, Wenxuan Song*, Shuai Chen, Yang Liu, Yan Wang, Haoang Li, Donglin Wang</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2602.17259">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2510.12276"><img src="images/spatialforcing.png" alt="Spatial Forcing research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2510.12276">Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model</a></h3><p class="authors">Fuhao Li, Wenxuan Song, Han Zhao, <strong>Jingbo Wang</strong>, Pengxiang Ding, Donglin Wang, Long Zeng, Haoang Li</p><p class="status">ICLR 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2510.12276">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.26320"><img src="images/DFM.png" alt="DFM-VLA research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.26320">DFM-VLA: Iterative Action Refinement for Robot Manipulation via Discrete Flow Matching</a></h3><p class="authors">Jiayi Chen, Wenxuan Song, <strong>Jingbo Wang</strong>, Shuai Chen, Zhijun Li, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.26320">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.25661"><img src="images/fastd.png" alt="Fast-dVLA research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.25661">Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance</a></h3><p class="authors">Wenxuan Song, Jiayi Chen, Shuai Chen, <strong>Jingbo Wang</strong>, Pengxiang Ding, Han Zhao, Yikai Qin, Xinhu Zheng, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">ECCV 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.25661">paper ↗</a></div></div></article>
-        <!-- <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.19370"><img src="images/VAMPO.png" alt="VAMPO research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.19370">VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models</a></h3><p class="authors">Zirui Ge, Pengxiang Ding, Baohua Yin, Qishen Wang, Zhiyong Xie, Yemin Wang, <strong>Jingbo Wang</strong>, et al.</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.19370">paper ↗</a></div></div></article> -->
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2610.02054" target="_blank" rel="noopener"><img src="images/uniwam.jpg" alt="UniWAM research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2610.02054" target="_blank" rel="noopener">UniWAM: Unified World-Action Model</a></h3><p class="authors">Jiayi Chen*, Wenxuan Song*, <strong>Jingbo Wang</strong>*, Shuai Zhou, Xicheng Gong, Zehua Fan, Ziyang Zhou, Junwu E, Haodong Yan, Fuhao Li, Qize Yu, Xu Huang, Pengwei Wang, Wen Chen, Shunbo Zhou, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2610.02054" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2609.39526" target="_blank" rel="noopener"><img src="images/df.png" alt="DF research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2609.39526" target="_blank" rel="noopener">Discrete Forcing: Infusing Discrete Guidance into Continuous Denoising for Few-Step Action Experts</a></h3><p class="authors"><strong>Jingbo Wang</strong>, Wenxuan Song, Wenhao Yu, Han Zhao, Xi Wang, Jiayi Chen, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2609.39526" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2602.17259" target="_blank" rel="noopener"><img src="images/frappe.png" alt="FRAPPE research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2602.17259" target="_blank" rel="noopener">FRAPPE: Infusing World Modeling into Generalist Policies via Multiple Future Representation Alignment</a></h3><p class="authors">Han Zhao*, <strong>Jingbo Wang</strong>*, Wenxuan Song*, Shuai Chen, Yang Liu, Yan Wang, Haoang Li, Donglin Wang</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2602.17259" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2510.12276" target="_blank" rel="noopener"><img src="images/spatialforcing.png" alt="Spatial Forcing research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2510.12276" target="_blank" rel="noopener">Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model</a></h3><p class="authors">Fuhao Li, Wenxuan Song, Han Zhao, <strong>Jingbo Wang</strong>, Pengxiang Ding, Donglin Wang, Long Zeng, Haoang Li</p><p class="status">ICLR 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2510.12276" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.26320" target="_blank" rel="noopener"><img src="images/DFM.png" alt="DFM-VLA research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.26320" target="_blank" rel="noopener">DFM-VLA: Iterative Action Refinement for Robot Manipulation via Discrete Flow Matching</a></h3><p class="authors">Jiayi Chen, Wenxuan Song, <strong>Jingbo Wang</strong>, Shuai Chen, Zhijun Li, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.26320" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.25661" target="_blank" rel="noopener"><img src="images/fastd.png" alt="Fast-dVLA research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.25661" target="_blank" rel="noopener">Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance</a></h3><p class="authors">Wenxuan Song, Jiayi Chen, Shuai Chen, <strong>Jingbo Wang</strong>, Pengxiang Ding, Han Zhao, Yikai Qin, Xinhu Zheng, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">ECCV 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.25661" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <!-- <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.19370" target="_blank" rel="noopener"><img src="images/VAMPO.png" alt="VAMPO research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.19370" target="_blank" rel="noopener">VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models</a></h3><p class="authors">Zirui Ge, Pengxiang Ding, Baohua Yin, Qishen Wang, Zhiyong Xie, Yemin Wang, <strong>Jingbo Wang</strong>, et al.</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.19370" target="_blank" rel="noopener">paper ↗</a></div></div></article> -->
       </div>
     </section>
     <section class="experience" id="experience"><div><h2>Experience</h2></div><div class="experience-main">
@@ -231,7 +233,7 @@
     </section>
   </main>
   <nav class="work-rail" id="work-rail" aria-label="Selected work navigation"></nav>
-  <footer id="contact"><div class="wrap"><div><h2>Let's make things move</h2></div><div class="right"><a href="mailto:jbobowang@gmail.com">jbobowang@gmail.com ↗</a><p class="site-credit">Thanks to my bro <a href="https://www.shuai-zhou.com/">Shuai Zhou</a> for the idea.</p><p>© Jingbo Wang</p></div></div></footer>
+  <footer id="contact"><div class="wrap"><div><h2>Let's make things move</h2></div><div class="right"><a href="mailto:jbobowang@gmail.com">jbobowang@gmail.com ↗</a><p class="site-credit">Thanks to my bro <a href="https://www.shuai-zhou.com/" target="_blank" rel="noopener">Shuai Zhou</a> for the idea.</p><p>© Jingbo Wang</p></div></div></footer>
   <script>
     const gymFrame = document.querySelector('.hero-art iframe');
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
@@ -332,6 +334,22 @@
       new IntersectionObserver(([entry]) => {
         rail.classList.toggle('is-in', entry.isIntersecting);
       }, { rootMargin: '-16% 0px -26% 0px' }).observe(section);
+    })();
+    // Reveal rows as they enter the viewport (progressive enhancement:
+    // the page stays fully visible without JavaScript).
+    (function () {
+      const targets = document.querySelectorAll('.paper, .exp, .education-main');
+      if (!targets.length || !('IntersectionObserver' in window)) return;
+      document.documentElement.classList.add('reveal-ready');
+      const reveal = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            reveal.unobserve(entry.target);
+          }
+        }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      targets.forEach((target) => reveal.observe(target));
     })();
     const photos = [
       { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.', zones: ['bot', 'me'], tips: { me: 'Yes, this is me.', bot: 'This is a bot.' } },
