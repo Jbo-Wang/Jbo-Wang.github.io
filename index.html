@@ -277,14 +277,13 @@
       }
     });
     const photos = [
-      { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.', zones: ['bot', 'me'] },
-      { src: 'images/self.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the left one.', zones: ['me', 'bot'] },
+      { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.', zones: ['bot', 'me'], tips: { me: 'Yes, this is me.', bot: 'This is a bot.' } },
+      { src: 'images/self.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the left one.', zones: ['me', 'bot'], tips: { me: 'Also me.', bot: 'Still a bot.' } },
     ];
     let photoIndex = 0;
     const hoverable = matchMedia('(hover: hover) and (pointer: fine)').matches;
     const photoTip = document.querySelector('#photo-tip');
     const photoCaption = document.querySelector('#photo-caption');
-    const TIPS = { me: 'Yes, this is me.', bot: 'This is a bot.' };
     const setCaption = () => {
       photoCaption.textContent = photos[photoIndex].caption;
     };
@@ -300,8 +299,8 @@
       const photoButton = document.getElementById('next-photo');
       let activeSide = null;
       const showTip = (side) => {
-        const who = photos[photoIndex].zones[side];
-        photoTip.textContent = TIPS[who];
+        const photo = photos[photoIndex];
+        photoTip.textContent = photo.tips[photo.zones[side]];
         photoTip.style.left = side === 0 ? '25%' : '75%';
         photoTip.classList.add('is-on');
       };
