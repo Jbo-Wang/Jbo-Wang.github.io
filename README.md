@@ -1,6 +1,6 @@
 # Jingbo Wang's homepage
 
-The current homepage is [`design-preview.html`](design-preview.html). [`index.html`](index.html) opens it from the site root. The interactive robot playground is [`robot-reference.html`](robot-reference.html); see [`ROBOT_REFERENCE.md`](ROBOT_REFERENCE.md) for its modules and model sources.
+The homepage is [`index.html`](index.html), served directly from the site root. The old [`design-preview.html`](design-preview.html) URL forwards to it. The interactive robot playground is [`robot-reference.html`](robot-reference.html); see [`ROBOT_REFERENCE.md`](ROBOT_REFERENCE.md) for its modules and model sources.
 
 Serve the repository root with a local HTTP server to preview the site. The older Jekyll content in `_pages/` and `_publications/` is retained as source material while the new homepage is being finalized.
 

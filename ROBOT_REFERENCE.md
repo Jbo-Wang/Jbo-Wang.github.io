@@ -1,6 +1,6 @@
 # Piper X + ARX R5a Playground
 
-Open `design-preview.html#playground` through a local HTTP server. The left arm uses the [AgileX Piper X description](https://github.com/agilexrobotics/piper_isaac_sim/tree/master/piper_x_description); the right arm uses the single-arm [ARX R5a URDF and STL meshes](https://github.com/ARXroboticsX/ARX_Model/tree/master/R5/R5a). The interaction pipeline was adapted from [`sudo-yf/wui-homepage`](https://github.com/sudo-yf/wui-homepage).
+Open `index.html#playground` through a local HTTP server. The left arm uses the [AgileX Piper X description](https://github.com/agilexrobotics/piper_isaac_sim/tree/master/piper_x_description); the right arm uses the single-arm [ARX R5a URDF and STL meshes](https://github.com/ARXroboticsX/ARX_Model/tree/master/R5/R5a). The interaction pipeline was adapted from [`sudo-yf/wui-homepage`](https://github.com/sudo-yf/wui-homepage).
 
 ## Modules
 
