@@ -4,9 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Piper X + R5a robot playground</title>
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.dataset.theme = theme;
+    })();
+    window.addEventListener('message', function (event) {
+      if (event.data === 'jw-theme:dark') document.documentElement.dataset.theme = 'dark';
+      if (event.data === 'jw-theme:light') document.documentElement.dataset.theme = 'light';
+    });
+  </script>
   <style>
     html, body { width:100%; height:100%; margin:0; overflow:hidden; }
     body { background:radial-gradient(circle at 50% 25%,#fffafd,#eee8f8 72%); }
+    html[data-theme="dark"] body { background:radial-gradient(circle at 50% 25%,#2b2440,#1a1626 72%); }
     .robot-companion { position:fixed; inset:0; pointer-events:none; }
     .robot-companion canvas { display:block; width:100%; height:100%; }
     .home-hero { width:100%; height:100%; touch-action:none; }
@@ -14,9 +29,21 @@
     .home-hero.is-dragging { cursor:grabbing; }
     .homepage-content { display:none; }
     .playground-hint { position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:1; box-sizing:border-box; width:max-content; max-width:calc(100% - 24px); margin:0; padding:9px 15px; border:1px solid rgba(141,120,176,.25); border-radius:999px; background:rgba(255,252,255,.83); color:#51475e; font:16px/1.35 system-ui,sans-serif; text-align:center; pointer-events:none; }
+    html[data-theme="dark"] .playground-hint { border-color:rgba(169,156,230,.3); background:rgba(38,32,56,.85); color:#beb5d6; }
     .arm-labels { position:fixed; left:4%; right:4%; bottom:16px; display:flex; justify-content:space-between; pointer-events:none; font:19px/1.3 system-ui,sans-serif; color:#5a5361; letter-spacing:.02em; }
+    html[data-theme="dark"] .arm-labels { color:#a79eba; }
     .arm-labels div:last-child { text-align:right; }
     .arm-labels strong { display:block; color:#36313d; font-size:22px; font-weight:650; letter-spacing:0; }
+    html[data-theme="dark"] .arm-labels strong { color:#ece9f3; }
+    .playground-loading { position:fixed; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; pointer-events:none; color:#5a5361; font:17px/1.3 system-ui,sans-serif; transition:opacity .5s ease, visibility 0s .5s; }
+    .playground-loading.is-done { opacity:0; visibility:hidden; }
+    .load-ring { width:34px; height:34px; border-radius:50%; border:3px solid rgba(111,96,184,.22); border-top-color:#6f60b8; animation:load-spin .9s linear infinite; }
+    @keyframes load-spin { to { transform:rotate(1turn); } }
+    @media (prefers-reduced-motion:reduce) { .load-ring { animation:none; border-top-color:rgba(111,96,184,.22); } }
+    html[data-theme="dark"] .playground-loading { color:#a79eba; }
+    html[data-theme="dark"] .load-ring { border-color:rgba(169,156,230,.25); border-top-color:#a99ce6; }
+    .robot-load-error { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:3; box-sizing:border-box; width:max-content; max-width:calc(100% - 24px); margin:0; padding:10px 15px; border-radius:12px; background:rgba(255,252,255,.92); color:#8a4450; font:15px/1.4 system-ui,sans-serif; text-align:center; }
+    html[data-theme="dark"] .robot-load-error { background:rgba(38,32,56,.92); color:#e0a9b4; }
     @media (max-width:600px) { .playground-hint { top:8px; border-radius:16px; font-size:14px; } .arm-labels { bottom:10px; font-size:17px; } .arm-labels strong { font-size:19px; } }
   </style>
   <script type="importmap">{"imports":{"three":"./assets/js/vendor/three/three.module.min.js"}}</script>
@@ -26,7 +53,24 @@
   <div class="home-hero"></div>
   <p class="playground-hint">Drag an object to a new spot and release it. The robots will return it.</p>
   <div class="arm-labels" aria-label="Robot models"><div><span>AgileX Robotics</span><strong>Piper X</strong></div><div><span>ARX Robotics</span><strong>R5a</strong></div></div>
+  <div class="playground-loading" id="playground-loading" role="status" aria-live="polite">
+    <span class="load-ring" aria-hidden="true"></span>
+    <span>Warming up the robots…</span>
+  </div>
   <div class="homepage-content"></div>
+  <script>
+    (function () {
+      const loading = document.getElementById('playground-loading');
+      const host = document.querySelector('.robot-companion');
+      if (!loading || !host) return;
+      const settle = () => {
+        if (host.dataset.playground === 'error') loading.setAttribute('hidden', '');
+        else loading.classList.add('is-done');
+      };
+      if (host.dataset.playground) settle();
+      new MutationObserver(settle).observe(host, { attributes: true, attributeFilter: ['data-playground'] });
+    })();
+  </script>
   <script type="module" src="./assets/js/robot-companion.js?v=60"></script>
 </body>
 </html>
