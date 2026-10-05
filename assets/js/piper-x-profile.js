@@ -1,0 +1,35 @@
+// AgileX Piper X. Dimensions and joint limits come from the upstream URDF.
+export const piperX = {
+  id: 'piper-x',
+  modelURL: new URL('../models/piper_x/piper_x.urdf', import.meta.url).href,
+  modelRotationZ: 0,
+  modelPosition: [0, 0, 0],
+  baseRotationZ: Math.PI / 2,
+  baseScale: 0.82,
+  basePosition: [-0.44, -0.36, 0],
+  jointNames: ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6', 'joint7', 'joint8'],
+  ikJointNames: ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6'],
+  joints: { pan: 'joint1', shoulder: 'joint2', elbow: 'joint3', wristPitch: 'joint4', wristRoll: 'joint6', gripper: 'joint7', otherJaw: 'joint8' },
+  // Official piper_x_v1.usd authors zero joint state for joint1–joint6.
+  // Keep the preview fingers open so their opposing direction is visible.
+  readyPose: [0, 0, 0, 0, 0, 0, 0.035, -0.035],
+  trackingPose: { joint2: 1.5, joint3: -1.6, joint5: -0.4 },
+  uprightPose: { joint2: 0.7, joint3: -1.2, joint5: 0.3 },
+  graspLink: 'Link6',
+  wristLink: 'Link5',
+  graspOffset: [0, 0, 0.13503],
+  jawMinimum: 0,
+  jawTravel: 2,
+  jawMaximum: 0.05,
+  jawClearance: 0.012,
+  graspShiftX: () => 0,
+  ikFixedPose: { joint7: 0.025, joint8: -0.025 },
+  ikSeed: () => [0, 0.7, -0.2, 0, 0, 0],
+  ikYawOffset: () => 0,
+  ikAlternativeSeeds: () => [
+    [0, 1.1, -1.35, 0, 0, 0],
+    [0, 1.6, -1.8, 0, 0, 0],
+    [0, 1.6, -1.8, 0.5, 0, 1.5],
+    [0, 1.6, -1.8, -0.5, 0, -1.5],
+  ],
+};
