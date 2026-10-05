@@ -304,10 +304,10 @@
         photoTip.textContent = TIPS[who];
         photoTip.style.left = side === 0 ? '25%' : '75%';
         photoTip.classList.add('is-on');
-        photoCaption.textContent = TIPS[who];
       };
       // pointermove is more reliable than pointerenter across devices and
-      // naturally handles crossing between the two halves.
+      // naturally handles crossing between the two halves. The caption
+      // below the photo stays untouched — the bubble is the whole egg.
       photoButton.addEventListener('pointermove', (event) => {
         const rect = photoButton.getBoundingClientRect();
         const side = event.clientX - rect.left < rect.width / 2 ? 0 : 1;
@@ -319,7 +319,6 @@
       photoButton.addEventListener('pointerleave', () => {
         activeSide = null;
         photoTip.classList.remove('is-on');
-        setCaption();
       });
       photoButton.addEventListener('click', () => {
         // The pointer may stay over the same half while switching photos, so
