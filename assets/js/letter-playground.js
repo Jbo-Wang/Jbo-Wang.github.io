@@ -179,7 +179,7 @@ export async function createLetterPlayground({ scene, camera, container, arms, w
     if (item.letter === 'Football') return { point: new THREE.Vector3(), width: 0.064 };
     const stroke = {
       J: { x: item.size.x / 2 - 0.014 * item.heightScale, y: 0.018 * item.heightScale, width: 0.028 * item.heightScale },
-      B: { x: -item.size.x / 2 + 0.015 * item.heightScale, y: 0, width: 0.030 * item.heightScale },
+      B: { x: -item.size.x / 2 + 0.015 * item.heightScale, y: item.size.y * 0.22, width: 0.030 * item.heightScale },
       O: { x: item.size.x / 2 - 0.014 * item.heightScale, y: 0, width: 0.028 * item.heightScale },
     }[item.letter];
     return {
