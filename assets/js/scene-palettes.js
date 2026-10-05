@@ -1,10 +1,10 @@
-const burgundy = {
-  id: 'burgundy',
-  robot: '#663a48',
-  face: '#874b5e',
-  side: '#b99da5',
+const lavender = {
+  id: 'lavender',
+  robot: '#625878',
+  face: '#a99ad3',
+  side: '#d3c9eb',
   edge: '#ffffff',
-  accent: '#873c55',
+  accent: '#7563ad',
   metalness: 0.18,
   roughness: 0.5,
 };
@@ -12,7 +12,7 @@ const burgundy = {
 const palettes = [
   { id: 'graphite', name: 'Graphite', robot: '#34383d', face: '#43484e', side: '#92989f', edge: '#ffffff', accent: '#424b55', metalness: 0.2, roughness: 0.52 },
   { id: 'petrol', name: 'Petrol', robot: '#31545a', face: '#47727a', side: '#a8bfc2', edge: '#ffffff', accent: '#2b656e', metalness: 0.25, roughness: 0.44 },
-  { ...burgundy, name: 'Burgundy' },
+  { ...lavender, name: 'Lavender' },
 ];
 
 export function mountPalettePicker(apply, { visible = false } = {}) {

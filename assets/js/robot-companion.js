@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { createLetterPlayground } from './letter-playground.js?v=100';
-import { mountPalettePicker } from './scene-palettes.js?v=46';
+import { mountPalettePicker } from './scene-palettes.js?v=47';
 import URDFLoader from './vendor/urdf-loader.js';
 import { STLLoader } from './vendor/stl-loader.js';
 import { ColladaLoader } from './vendor/ColladaLoader.js';
