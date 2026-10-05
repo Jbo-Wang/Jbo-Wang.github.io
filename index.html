@@ -152,14 +152,17 @@
     .misc h2 { margin-bottom:26px; }
     .misc ol { margin:0; padding:0; list-style:none; }
     .misc li { margin:0; padding:25px 0; border-top:1px solid var(--line); color:var(--muted); }
-    .work-rail { position:fixed; left:18px; top:50%; transform:translateY(-50%); z-index:30; display:flex; flex-direction:column; align-items:flex-start; gap:18px; opacity:0; visibility:hidden; transition:opacity .4s ease, visibility .4s; }
+    .work-rail { position:fixed; left:16px; top:50%; transform:translateY(-50%); z-index:30; opacity:0; visibility:hidden; transition:opacity .4s ease, visibility .4s; }
     .work-rail.is-in { opacity:1; visibility:visible; }
-    .work-rail a { position:relative; display:flex; align-items:center; padding:3px 0; color:var(--muted); }
-    .work-rail .dot { width:5px; height:5px; border-radius:50%; background:var(--line-strong); transition:transform .25s ease, background-color .25s ease; }
-    .work-rail a:hover .dot, .work-rail a.is-active .dot { background:var(--accent); }
-    .work-rail a.is-active .dot { transform:scale(1.5); }
-    .work-rail .tag { position:absolute; left:14px; top:50%; transform:translate(-4px,-50%); opacity:0; pointer-events:none; white-space:nowrap; font-size:12.5px; font-weight:600; letter-spacing:.01em; transition:opacity .18s ease, transform .18s ease, color .18s ease; }
-    .work-rail a:hover .tag { opacity:1; transform:translate(0,-50%); color:var(--ink); }
+    .rail-ticks { display:flex; flex-direction:column; gap:7px; padding:5px 4px; }
+    .rail-ticks a { display:block; padding:2px 0; }
+    .rail-ticks .tick { display:block; width:14px; height:3px; border-radius:2px; background:var(--line-strong); transition:width .25s ease, background-color .25s ease; }
+    .rail-ticks a:hover .tick, .rail-ticks a.is-active .tick { width:22px; background:var(--accent); }
+    .rail-overview { position:absolute; left:calc(100% + 8px); top:50%; transform:translate(-6px,-50%); opacity:0; visibility:hidden; transition:opacity .22s ease, transform .22s ease, visibility .22s; background:var(--white); border:1px solid var(--line); border-radius:10px; box-shadow:0 12px 30px #5140711a; padding:6px; min-width:148px; }
+    .work-rail:hover .rail-overview, .work-rail:focus-within .rail-overview { opacity:1; visibility:visible; transform:translate(0,-50%); }
+    .rail-overview a { display:block; padding:5px 10px; border-radius:6px; font-size:13px; font-weight:600; color:var(--muted); white-space:nowrap; transition:background-color .15s ease, color .15s ease; }
+    .rail-overview a:hover { color:var(--ink); background:var(--thumb-bg); }
+    .rail-overview a.is-active { color:var(--accent); }
     @media (max-width:1300px) { .work-rail { display:none; } }
     footer { background:var(--green); color:#faf7ff; }
     footer .wrap { display:flex; justify-content:space-between; align-items:end; gap:24px; padding:49px 0; }
@@ -294,31 +297,45 @@
       if (!rail || !section) return;
       const papers = Array.from(section.querySelectorAll('.paper'));
       if (!papers.length) return;
-      const links = papers.map((paper, index) => {
+      const ticksBox = document.createElement('div');
+      ticksBox.className = 'rail-ticks';
+      const overview = document.createElement('div');
+      overview.className = 'rail-overview';
+      const tickLinks = [];
+      const overviewLinks = [];
+      papers.forEach((paper, index) => {
         const name = paper.querySelector('h3').textContent.split(':')[0].trim();
-        const link = document.createElement('a');
-        link.href = '#research';
-        link.setAttribute('aria-label', name);
-        const tag = document.createElement('span');
-        tag.className = 'tag';
-        tag.textContent = name;
-        const dot = document.createElement('span');
-        dot.className = 'dot';
-        link.append(dot, tag);
-        link.addEventListener('click', (event) => {
+        const tickLink = document.createElement('a');
+        tickLink.href = '#research';
+        tickLink.setAttribute('aria-label', name);
+        const tick = document.createElement('span');
+        tick.className = 'tick';
+        tickLink.appendChild(tick);
+        tickLink.addEventListener('click', (event) => {
           event.preventDefault();
           paper.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-        rail.appendChild(link);
-        return link;
+        const overviewLink = document.createElement('a');
+        overviewLink.href = '#research';
+        overviewLink.textContent = name;
+        overviewLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          paper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        ticksBox.appendChild(tickLink);
+        overview.appendChild(overviewLink);
+        tickLinks.push(tickLink);
+        overviewLinks.push(overviewLink);
       });
+      rail.append(ticksBox, overview);
       const setActive = () => {
         const probe = innerHeight * 0.42;
         let current = -1;
         papers.forEach((paper, index) => {
           if (paper.getBoundingClientRect().top <= probe) current = index;
         });
-        links.forEach((link, index) => {
+        tickLinks.forEach((link, index) => link.classList.toggle('is-active', index === current));
+        overviewLinks.forEach((link, index) => {
           link.classList.toggle('is-active', index === current);
           if (index === current) link.setAttribute('aria-current', 'true');
           else link.removeAttribute('aria-current');
