@@ -176,6 +176,20 @@
       html:not([data-theme]) { --paper:#16131e; --white:#211c2f; --ink:#ece9f3; --muted:#a79eba; --line:#322c43; --line-strong:#3d3554; --nav-ink:#beb5d6; --art-bg:#231e33; --thumb-bg:#2a2440; --pill-bg:#ffffff12; --accent:#a99ce6; --green:#453a6b; --green-text:#b3a8e3; --footer-link:#8f83b8; color-scheme:dark; }
     }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .exp.ongoing .role::before{animation:none} .paper-image img{transition:none} .reveal-ready .paper, .reveal-ready .exp, .reveal-ready .education-main { opacity:1; transform:none; transition:none; } }
+    @media print {
+      :root, html[data-theme="dark"] { --paper:#fff; --white:#fff; --ink:#000; --muted:#4a4454; --line:#d8d2e2; --line-strong:#c9c2d6; --nav-ink:#333; --art-bg:#fff; --thumb-bg:#f0edf6; --pill-bg:#fff; --accent:#514071; --green:#514071; --green-text:#514071; --footer-link:#999; color-scheme:light; }
+      body { font:11pt/1.55 var(--font-sans); }
+      .topbar, .work-rail, .playground, .theme-toggle, .photo-tip, .photo-zones, .hero-links { display:none !important; }
+      .hero { padding:0 0 16pt; grid-template-columns:minmax(0,1fr) 200px; }
+      h1 { font-size:30pt; }
+      .hero-photo img { width:100%; height:auto; }
+      section.content, .experience, .education { padding:14pt 0; }
+      .paper { padding:12pt 0; break-inside:avoid; }
+      .paper, .exp, .education-main { break-inside:avoid; }
+      .paper-links a::after { content:" (" attr(href) ")"; font-size:8.5pt; color:#4a4454; }
+      footer { background:#fff; color:#000; border-top:1.5pt solid #000; }
+      footer a { color:#000; border:0; }
+    }
   </style>
 </head>
 <body>
@@ -202,7 +216,7 @@
     </div>
     <section class="playground" id="playground" aria-labelledby="playground-title">
       <h2 id="playground-title">Jingbo Gym</h2>
-      <div class="hero-art"><iframe src="robot-reference.html" title="Interactive AgileX Piper X and ARX R5a arms with JBO, Chiikawa and a football" loading="lazy"></iframe></div>
+      <div class="hero-art"><iframe src="robot-reference.html?v=2" title="Interactive AgileX Piper X and ARX R5a arms with JBO, Chiikawa and a football" loading="lazy"></iframe></div>
     </section>
     <section class="content" id="research">
       <div class="section-head"><h2>Selected work</h2><p class="section-note">* Equal contribution</p></div>

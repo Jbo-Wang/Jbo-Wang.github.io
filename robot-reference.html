@@ -37,6 +37,10 @@
     html[data-theme="dark"] .arm-labels strong { color:#ece9f3; }
     .playground-loading { position:fixed; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; pointer-events:none; color:#5a5361; font:17px/1.3 system-ui,sans-serif; transition:opacity .5s ease, visibility 0s .5s; }
     .playground-loading.is-done { opacity:0; visibility:hidden; }
+    .load-bar { width:120px; height:3px; border-radius:2px; background:rgba(111,96,184,.18); overflow:hidden; }
+    #load-bar-fill { display:block; height:100%; width:0; border-radius:2px; background:#6f60b8; transition:width .3s ease; }
+    html[data-theme="dark"] .load-bar { background:rgba(169,156,230,.22); }
+    html[data-theme="dark"] #load-bar-fill { background:#a99ce6; }
     .load-ring { width:34px; height:34px; border-radius:50%; border:3px solid rgba(111,96,184,.22); border-top-color:#6f60b8; animation:load-spin .9s linear infinite; }
     @keyframes load-spin { to { transform:rotate(1turn); } }
     @media (prefers-reduced-motion:reduce) { .load-ring { animation:none; border-top-color:rgba(111,96,184,.22); } }
@@ -55,7 +59,8 @@
   <div class="arm-labels" aria-label="Robot models"><div><span>AgileX Robotics</span><strong>Piper X</strong></div><div><span>ARX Robotics</span><strong>R5a</strong></div></div>
   <div class="playground-loading" id="playground-loading" role="status" aria-live="polite">
     <span class="load-ring" aria-hidden="true"></span>
-    <span>Warming up the robots…</span>
+    <span class="load-label">Warming up the robots…</span>
+    <span class="load-bar" aria-hidden="true"><span id="load-bar-fill"></span></span>
   </div>
   <div class="homepage-content"></div>
   <script>
@@ -63,7 +68,22 @@
       const loading = document.getElementById('playground-loading');
       const host = document.querySelector('.robot-companion');
       if (!loading || !host) return;
+      const fill = document.getElementById('load-bar-fill');
+      const label = loading.querySelector('.load-label');
+      // Mesh transfer is ~9.5MB gzipped; byte-based progress feels smoother
+      // than item counts because one mesh dominates the total.
+      const EXPECTED_BYTES = 9600000;
+      const timer = setInterval(() => {
+        const entries = performance.getEntriesByType('resource').filter(e => /models\/|typeface/.test(e.name));
+        let loaded = 0;
+        for (const entry of entries) loaded += (entry.decodedBodySize || entry.transferSize || 0);
+        const pct = Math.min(99, Math.round(loaded / EXPECTED_BYTES * 100));
+        if (fill) fill.style.width = pct + '%';
+        if (label) label.textContent = `Warming up the robots… ${pct}%`;
+      }, 300);
       const settle = () => {
+        clearInterval(timer);
+        if (fill) fill.style.width = '100%';
         if (host.dataset.playground === 'error') loading.setAttribute('hidden', '');
         else loading.classList.add('is-done');
       };
