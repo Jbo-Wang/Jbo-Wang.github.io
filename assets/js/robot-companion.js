@@ -3,6 +3,7 @@ import { createLetterPlayground } from './letter-playground.js?v=100';
 import { mountPalettePicker } from './scene-palettes.js?v=46';
 import URDFLoader from './vendor/urdf-loader.js';
 import { STLLoader } from './vendor/stl-loader.js';
+import { ColladaLoader } from './vendor/ColladaLoader.js';
 import { piperX } from './piper-x-profile.js?v=6';
 import { r5a } from './r5a-profile.js?v=16';
 
@@ -57,7 +58,10 @@ async function mountRobot(container) {
   loader.parseCollision = false;
   const meshes = new Map();
   const stl = new STLLoader();
-  if ('DecompressionStream' in window) loader.loadMeshCb = (url, loadingManager, done) => {
+  const collada = new ColladaLoader();
+  // Both arms fetch `url + '.gz'` first and decompress in the browser; the
+  // raw file remains the fallback so models keep loading without it.
+  const loadMesh = (url, loadingManager, done) => {
     loadingManager.itemStart(url);
     if (!meshes.has(url)) meshes.set(url, fetch(url + '.gz')
       .then(response => {
@@ -68,11 +72,14 @@ async function mountRobot(container) {
         if (!response.ok) throw new Error('Mesh unavailable');
         return response.arrayBuffer();
       }))
-      .then(buffer => stl.parse(buffer)));
-    meshes.get(url).then(geometry => done(new THREE.Mesh(geometry)))
+      .then(data => /\.dae$/i.test(url)
+        ? collada.parse(new TextDecoder().decode(data), '').scene
+        : new THREE.Mesh(stl.parse(data))));
+    meshes.get(url).then(object => done(object))
       .catch(error => { done(null, error); loadingManager.itemError(url); })
       .finally(() => loadingManager.itemEnd(url));
   };
+  if ('DecompressionStream' in window) loader.loadMeshCb = loadMesh;
   const modelURL = r5a.modelURL;
   let robot;
   await new Promise((resolve, reject) => {
@@ -85,6 +92,7 @@ async function mountRobot(container) {
   const piperManager = new THREE.LoadingManager();
   const piperLoader = new URDFLoader(piperManager);
   piperLoader.parseCollision = false;
+  if ('DecompressionStream' in window) piperLoader.loadMeshCb = loadMesh;
   let piperRobot;
   await new Promise((resolve, reject) => {
     piperManager.onLoad = resolve;
@@ -341,6 +349,13 @@ async function mountRobot(container) {
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { clearTimeout(idleWake); playground.suspend(); cancelAnimationFrame(frame); frame = 0; }
     else wake();
+  });
+  // The host page reports viewport visibility; an iframe's own
+  // IntersectionObserver cannot see the parent document scrolling.
+  window.addEventListener('message', (event) => {
+    if (event.source !== window.parent) return;
+    if (event.data === 'jw-visible:false') { visible = false; clearTimeout(idleWake); playground.suspend(); cancelAnimationFrame(frame); frame = 0; }
+    if (event.data === 'jw-visible:true') { visible = true; wake(); }
   });
   renderer.domElement.addEventListener('webglcontextlost', event => {
     event.preventDefault();

@@ -4,7 +4,7 @@ Open `index.html#playground` through a local HTTP server. The left arm uses the 
 
 ## Modules
 
-- `robot-companion.js` loads both URDFs, renders the scene and interpolates joint values.
+- `robot-companion.js` loads both URDFs, renders the scene and interpolates joint values. Meshes are fetched as `url + '.gz'` (generated with `gzip -k9`) and decompressed in the browser via `DecompressionStream`; the raw file remains the fallback. Piper X meshes are Collada (`.dae`) parsed with the vendored `ColladaLoader.js`; the host page posts `jw-visible:` messages so the scene pauses rendering while the iframe is scrolled out of view.
 - `piper-x-profile.js` and `r5a-profile.js` contain model paths, transforms, joint mapping, rest pose, jaw mapping, TCP frame and IK seeds. The old `so101-profile.js` and mesh are retained locally for comparison.
 - `robot-ik.js` solves six arm joints per robot against TCP position, downward approach direction and pinch-axis yaw using the URDF hierarchy and `numeric.uncmin`.
 - `grasp-frame.js` attaches the profile-specific TCP to the URDF grasp link. R5a rotates this frame so its finger direction is the solver's tool axis.

@@ -3,26 +3,82 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>Jingbo Wang</title>
+  <meta name="color-scheme" content="light dark">
+  <title>Jingbo Wang · Robotics</title>
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.dataset.theme = theme;
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'dark' ? '#16131e' : '#f8f6fc';
+    })();
+  </script>
+  <meta name="description" content="Jingbo Wang is a fourth-year Computer Science undergraduate at SCUT working on robot learning — vision-language-action models and world models.">
+  <link rel="canonical" href="https://jbo-wang.github.io/">
+  <link rel="icon" href="images/favicon-chiikawa.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon-180x180.png">
+  <meta name="theme-color" content="#f8f6fc">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jingbo Wang">
+  <meta property="og:url" content="https://jbo-wang.github.io/">
+  <meta property="og:title" content="Jingbo Wang · Robotics">
+  <meta property="og:description" content="Fourth-year CS undergraduate at SCUT working on robot learning — vision-language-action models and world models.">
+  <meta property="og:image" content="https://jbo-wang.github.io/images/self2.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Jingbo Wang · Robotics">
+  <meta name="twitter:description" content="Fourth-year CS undergraduate at SCUT working on robot learning — vision-language-action models and world models.">
+  <meta name="twitter:image" content="https://jbo-wang.github.io/images/self2.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jingbo Wang",
+    "url": "https://jbo-wang.github.io/",
+    "email": "mailto:jbobowang@gmail.com",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "South China University of Technology" },
+    "sameAs": ["https://github.com/Jbo-Wang", "https://scholar.google.com/citations?user=8l7kt3QAAAAJ"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
   <style>
-    :root { --paper:#f8f6fc; --white:#fffdfd; --ink:#2d273b; --muted:#6b6479; --line:#e2ddeb; --accent:#6f60b8; --green:#514071; --font-serif:"Source Serif 4",Georgia,serif; --font-sans:"IBM Plex Sans","Segoe UI",sans-serif; }
+    :root { --paper:#f8f6fc; --white:#fffdfd; --ink:#2d273b; --muted:#6b6479; --line:#e2ddeb; --line-strong:#d9d1e4; --nav-ink:#514963; --art-bg:#eee8f8; --thumb-bg:#ebe6f2; --pill-bg:#ffffff88; --accent:#6f60b8; --green:#514071; --green-text:#514071; --footer-link:#c6b5db; --font-serif:"Source Serif 4",Georgia,serif; --font-sans:"IBM Plex Sans","Segoe UI",sans-serif; color-scheme:light; }
+    /* Keep the dark palette in sync with the @media (prefers-color-scheme: dark) fallback below. */
+    html[data-theme="dark"] { --paper:#16131e; --white:#211c2f; --ink:#ece9f3; --muted:#a79eba; --line:#322c43; --line-strong:#3d3554; --nav-ink:#beb5d6; --art-bg:#231e33; --thumb-bg:#2a2440; --pill-bg:#ffffff12; --accent:#a99ce6; --green:#453a6b; --green-text:#b3a8e3; --footer-link:#8f83b8; color-scheme:dark; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
+    #about, #playground, #research, #experience, #misc, #contact { scroll-margin-top:96px; }
     body { margin:0; color:var(--ink); background:var(--paper); font:24px/1.6 var(--font-sans); }
     a { color:inherit; text-decoration:none; }
     a:hover { color:var(--accent); }
     a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
     .wrap { width:min(1180px,calc(100% - 64px)); margin:auto; }
-    .topbar { border-bottom:1px solid var(--line); background:var(--paper); }
+    .topbar { position:sticky; top:0; z-index:40; border-bottom:1px solid var(--line); background:var(--paper); transition:transform .35s ease, opacity .35s ease, background-color .4s ease, border-color .4s ease, box-shadow .4s ease; }
+    .topbar.is-scrolled { border-bottom-color:transparent; background:color-mix(in srgb, var(--paper) 78%, transparent); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); box-shadow:0 14px 30px #51407114; }
+    .topbar.is-hidden { transform:translateY(-105%); opacity:0; }
     .topbar .wrap { min-height:78px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .brand { display:flex; align-items:center; gap:12px; font-size:21px; font-weight:750; letter-spacing:.015em; white-space:nowrap; }
-    .mark { display:grid; place-items:center; width:38px; height:38px; background:var(--green); color:var(--white); font:700 20px var(--font-serif); transform:rotate(-7deg); }
-    nav { display:flex; gap:30px; color:#514963; font-size:20px; font-weight:650; }
+    .mark { display:grid; place-items:center; width:38px; height:38px; padding:0; border:0; background:none; cursor:pointer; transform:rotate(-7deg); transition:transform .25s ease; }
+    .mark:hover { transform:rotate(0deg); }
+    .mark:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .mark-img { width:100%; height:100%; object-fit:contain; }
+    .mark-img--alt { display:none; }
+    .mark.is-alt .mark-img { display:none; }
+    .mark.is-alt .mark-img--alt { display:block; }
+    nav { display:flex; gap:30px; color:var(--nav-ink); font-size:20px; font-weight:650; }
     nav a { padding:8px 0; }
+    .theme-toggle { display:grid; place-items:center; width:38px; height:38px; padding:0; border:1px solid var(--line); border-radius:50%; background:none; color:var(--ink); cursor:pointer; order:3; }
+    .theme-toggle:hover { border-color:var(--accent); color:var(--accent); }
+    .theme-toggle:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .theme-toggle svg { width:19px; height:19px; }
+    .theme-toggle .icon-sun { display:none; }
+    html[data-theme="dark"] .theme-toggle .icon-sun { display:block; }
+    html[data-theme="dark"] .theme-toggle .icon-moon { display:none; }
     .hero { display:grid; grid-template-columns:minmax(0,1fr) 435px; align-items:center; gap:24px 36px; padding:62px 0; border-bottom:1px solid var(--line); }
     .hero-copy { display:flex; flex-direction:column; align-items:flex-start; min-width:0; }
     h1,h2,h3,p { margin-top:0; }
@@ -32,47 +88,56 @@
     .hero-detail { color:var(--muted); font-size:24px; }
     .hero-detail a { color:var(--accent); text-decoration:underline; text-underline-offset:3px; }
     .hero-links { display:flex; flex-wrap:wrap; gap:10px; padding-top:28px; }
-    .pill { display:inline-flex; align-items:center; gap:14px; padding:10px 15px; border:1px solid var(--line); border-radius:2px; background:#ffffff88; font-size:21px; font-weight:650; }
+    .pill { display:inline-flex; align-items:center; gap:14px; padding:10px 15px; border:1px solid var(--line); border-radius:2px; background:var(--pill-bg); font-size:21px; font-weight:650; }
     .pill:hover { border-color:var(--accent); }
     .pill.primary { background:var(--green); border-color:var(--green); color:#fff; }
     .pill.primary:hover { background:var(--accent); border-color:var(--accent); }
+    html[data-theme="dark"] .pill.primary:hover { color:#16131e; }
     .hero-photo { width:100%; margin:0; }
-    .hero-photo button { display:block; width:100%; padding:0; border:0; background:none; cursor:pointer; }
+    .hero-photo button { display:block; width:100%; padding:0; border:0; background:none; cursor:pointer; position:relative; }
     .hero-photo button:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .hero-photo button:hover { cursor:help; }
+    .photo-tip { position:absolute; top:23%; left:25%; z-index:2; transform:translate(-50%,10px); opacity:0; pointer-events:none; padding:9px 16px; border-radius:999px; background:var(--green); color:#fff; font-size:19px; font-weight:650; white-space:nowrap; box-shadow:0 12px 26px #51407138; transition:opacity .25s ease, transform .25s ease; }
+    .photo-tip.is-on { opacity:1; transform:translate(-50%,0); }
     .hero-photo img { display:block; width:100%; height:465px; object-fit:cover; object-position:48% 28%; border-radius:4px; }
     .hero-photo figcaption { display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:10px; color:var(--muted); font-size:20px; text-align:center; }
     .playground { padding:58px 0 0; }
     .playground h2 { margin-bottom:20px; font-size:clamp(34px,3.5vw,46px); }
-    .hero-art { overflow:hidden; height:460px; border:1px solid #e2ddeb; border-radius:12px; background:#eee8f8; }
+    .hero-art { overflow:hidden; height:460px; border:1px solid var(--line); border-radius:12px; background:var(--art-bg); }
     .hero-art iframe { display:block; width:100%; height:100%; border:0; }
     section.content { padding:82px 0 10px; }
     .section-head { margin-bottom:30px; }
     .section-note { margin:10px 0 0; color:var(--muted); font-size:22px; }
     h2 { margin:0; font:normal clamp(38px,4.6vw,60px)/1.05 var(--font-serif); letter-spacing:-.045em; }
     main section h2::after { content:""; display:block; width:34px; height:5px; margin-top:13px; border-radius:3px; background:var(--green); }
-    .paper-list { display:grid; gap:18px; }
-    .paper { display:grid; grid-template-columns:280px minmax(0,1fr); gap:30px; padding:25px; border:1px solid #d9d1e4; border-radius:18px; background:var(--white); box-shadow:0 8px 28px #5140710a; }
-    .paper-image img { display:block; width:100%; height:190px; object-fit:contain; border-radius:12px; background:#ebe6f2; }
+    .paper-list { display:grid; }
+    .paper { display:grid; grid-template-columns:280px minmax(0,1fr); gap:36px; padding:36px 0; border-bottom:1px solid var(--line); scroll-margin-top:96px; }
+    .paper-image { align-self:start; overflow:hidden; border-radius:10px; }
+    .paper-image img { display:block; width:100%; height:190px; object-fit:contain; background:var(--thumb-bg); transition:transform .4s ease; }
+    .paper:hover .paper-image img { transform:scale(1.03); }
     .paper-info { min-width:0; }
-.paper h3 { margin:0 0 12px; font:700 clamp(24px,2.6vw,31px)/1.32 var(--font-serif); letter-spacing:0; overflow-wrap:break-word; }
-    .paper .authors { margin:0 0 12px; color:var(--muted); font-size:24px; line-height:1.5; }
+.paper h3 { margin:0 0 10px; font:700 clamp(26px,2.8vw,34px)/1.28 var(--font-serif); letter-spacing:0; overflow-wrap:break-word; transition:color .2s ease; }
+    .paper:hover h3 a { color:var(--accent); }
+    .paper .authors { margin:0 0 14px; color:var(--muted); font-size:22px; line-height:1.55; }
     .paper .authors strong { color:var(--ink); }
-    .paper .status { margin:0 0 16px; font-size:24px; }
-    .paper-links a { color:var(--accent); font-size:24px; font-weight:750; }
-    .paper-links a:hover { text-decoration:underline; }
+    .paper .status { margin:0 0 10px; font-size:15px; font-weight:750; letter-spacing:.09em; text-transform:uppercase; color:var(--green-text); }
+    .paper-links a { color:var(--accent); font-size:22px; font-weight:750; }
+    .paper-links a:hover { text-decoration:underline; text-underline-offset:4px; }
     .experience { padding:93px 0 16px; }
     .experience h2,.education h2 { margin-bottom:30px; }
     .experience-main { border-top:1px solid var(--line); }
-    .exp { display:grid; grid-template-columns:155px minmax(0,1fr) 180px; align-items:center; gap:20px; padding:25px 0 24px; border-bottom:1px solid var(--line); }
-    .exp.ongoing { margin:14px 0; padding:22px 24px; border:1px solid #ded5ec; border-radius:16px; background:#fffdfd; box-shadow:0 8px 24px #51407116; }
+    .exp { display:grid; grid-template-columns:155px minmax(0,1fr) 180px; align-items:center; gap:20px; padding:28px 0; border-bottom:1px solid var(--line); }
+    .exp.ongoing { margin:0; padding:28px 0; border-bottom:1px solid var(--line); border-radius:0; background:none; box-shadow:none; }
     .exp > div { min-width:0; }
     .exp time { color:var(--muted); font-size:21px; font-weight:650; }
     .exp h3 { margin:0 0 5px; font:normal 25px/1.25 var(--font-serif); overflow-wrap:break-word; }
     .exp p { margin:0; color:var(--muted); font-size:23px; }
-    .exp .role { color:var(--green); font-size:25px; font-weight:700; }
+    .exp .role { color:var(--green-text); font-size:25px; font-weight:700; }
+    .exp.ongoing .role::before { content:""; display:inline-block; width:9px; height:9px; margin-right:9px; border-radius:50%; background:var(--accent); vertical-align:2px; animation:role-pulse 2.4s ease-in-out infinite; }
+    @keyframes role-pulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
     .exp-logo { display:grid; place-items:center; width:84px; height:84px; object-fit:contain; justify-self:end; }
     .exp-logo--wide { width:180px; height:64px; padding:10px 12px; border-radius:8px; background:#25252d; }
-    .exp-logo:not(img) { border:1px dashed #c9bfd9; border-radius:8px; color:var(--muted); font-size:15px; }
+    .exp-logo:not(img) { border:1px dashed var(--line-strong); border-radius:8px; color:var(--muted); font-size:15px; }
     .exp-logo:not(img)::after { content:"Logo"; }
     .education { padding:80px 0; }
     .education-main { padding-top:20px; border-top:1px solid var(--line); display:grid; grid-template-columns:minmax(0,1fr) auto 76px; align-items:center; gap:24px; }
@@ -84,25 +149,58 @@
     .education-logo { width:76px; height:76px; object-fit:contain; justify-self:end; }
     .misc { padding:0 0 90px; }
     .misc h2 { margin-bottom:26px; }
-    .misc p { margin:0; padding:25px 0; border-top:1px solid var(--line); color:var(--muted); }
+    .misc ol { margin:0; padding:0; list-style:none; }
+    .misc li { margin:0; padding:25px 0; border-top:1px solid var(--line); color:var(--muted); }
+    .work-rail { position:fixed; left:16px; top:50%; transform:translateY(-50%); z-index:30; display:flex; flex-direction:column; align-items:flex-start; gap:7px; opacity:0; visibility:hidden; transition:opacity .4s ease, visibility .4s; }
+    .work-rail.is-in { opacity:1; visibility:visible; }
+    .work-rail a { position:relative; display:block; padding:3px 0; }
+    .work-rail .tick { display:block; width:14px; height:3px; border-radius:2px; background:var(--line-strong); transition:width .25s ease, background-color .25s ease; }
+    .work-rail a:hover .tick, .work-rail a.is-active .tick { width:22px; background:var(--accent); }
+    .work-rail .tag { position:absolute; left:calc(100% + 12px); top:50%; transform:translate(-4px,-50%); opacity:0; visibility:hidden; pointer-events:none; font:italic 400 16px/1 var(--font-serif); color:var(--muted); white-space:nowrap; transition:opacity .2s ease, transform .2s ease, visibility .2s, color .15s ease; }
+    .work-rail a:hover .tag { opacity:1; visibility:visible; transform:translate(0,-50%); color:var(--ink); }
+    html[data-theme="dark"] .paper-image img, html[data-theme="dark"] .exp-logo, html[data-theme="dark"] .education-logo { opacity:.88; }
+    .reveal-ready .paper, .reveal-ready .exp, .reveal-ready .education-main { opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal-ready .is-revealed { opacity:1; transform:none; }
+    @media (max-width:1300px) { .work-rail { display:none; } }
     footer { background:var(--green); color:#faf7ff; }
     footer .wrap { display:flex; justify-content:space-between; align-items:end; gap:24px; padding:49px 0; }
     footer h2 { font-size:42px; }
-    footer a { color:#faf7ff; border-bottom:1px solid #c6b5db; }
+    footer a { color:#faf7ff; border-bottom:1px solid var(--footer-link); }
     footer .site-credit { max-width:430px; margin:16px 0 8px; font-size:18px; line-height:1.45; }
     @media (max-width:1050px) { .hero{grid-template-columns:1fr} .hero-photo{width:min(100%,435px);justify-self:center} }
-    @media (max-width:820px) { .wrap{width:min(100% - 36px,650px)} .topbar .wrap{min-height:68px;flex-wrap:wrap;gap:8px;padding:12px 0} nav{width:100%;justify-content:space-between;gap:16px} section.content{padding-top:70px} .experience{padding-top:76px} .education{padding:70px 0 80px} .paper{grid-template-columns:200px minmax(0,1fr);gap:20px;padding:20px} .paper-image img{height:160px} .paper h3{font-size:24px} .exp{grid-template-columns:115px minmax(0,1fr) 140px} .exp-logo{width:68px;height:68px} .exp-logo--wide{width:140px;height:56px} }
-    @media (max-width:600px) { nav{gap:12px;font-size:17px} nav a:last-child{display:none} h1{font-size:clamp(44px,11vw,70px)} .hero{padding:48px 0} .hero-photo{max-width:345px} .hero-photo img{height:360px} .playground{padding-top:46px} .hero-art{height:340px} .paper{grid-template-columns:1fr;gap:16px;padding:18px} .paper-image img{height:165px} .paper h3{font-size:23px} .exp{grid-template-columns:minmax(0,1fr) 68px;gap:5px 12px} .exp.ongoing{padding:18px} .exp time{grid-column:1;grid-row:1} .exp > div{grid-column:1;grid-row:2} .exp-logo{grid-column:2;grid-row:1 / span 2} .exp-logo--wide{grid-column:1 / -1;grid-row:3;justify-self:start;width:180px;height:64px;margin-top:8px} footer .wrap{display:block} footer h2{font-size:35px} footer .right{margin-top:26px} }
+    @media (max-width:820px) { .wrap{width:min(100% - 36px,650px)} .topbar .wrap{min-height:52px;flex-wrap:nowrap;gap:10px;padding:8px 0} .brand{gap:8px;font-size:16px} .mark{width:30px;height:30px} nav{gap:12px;font-size:15px;font-weight:600;flex:1;justify-content:flex-end;flex-wrap:nowrap} nav a{padding:4px 0} .theme-toggle{width:32px;height:32px} #about,#playground,#research,#experience,#misc,#contact{scroll-margin-top:70px} section.content{padding-top:70px} .experience{padding-top:76px} .education{padding:70px 0 80px} .paper{grid-template-columns:200px minmax(0,1fr);gap:24px;padding:28px 0} .paper-image img{height:160px} .paper h3{font-size:24px} .exp{grid-template-columns:115px minmax(0,1fr) 140px} .exp-logo{width:68px;height:68px} .exp-logo--wide{width:140px;height:56px} }
+    @media (max-width:600px) { nav{gap:12px} nav a:last-child{display:none} .photo-tip{top:20%;font-size:15px;padding:7px 12px} h1{font-size:clamp(44px,11vw,70px)} .hero{padding:48px 0} .hero-photo{max-width:345px} .hero-photo img{height:360px} .playground{padding-top:46px} .hero-art{height:340px} .paper{grid-template-columns:1fr;gap:16px;padding:26px 0} .paper-image img{height:165px} .paper h3{font-size:23px} .exp{grid-template-columns:minmax(0,1fr) 68px;gap:5px 12px} .exp.ongoing{padding:18px} .exp time{grid-column:1;grid-row:1} .exp > div{grid-column:1;grid-row:2} .exp-logo{grid-column:2;grid-row:1 / span 2} .exp-logo--wide{grid-column:1 / -1;grid-row:3;justify-self:start;width:180px;height:64px;margin-top:8px} footer .wrap{display:block} footer h2{font-size:35px} footer .right{margin-top:26px} }
     @media (max-width:820px) { .education-main{grid-template-columns:minmax(0,1fr) 68px;gap:8px 16px} .education-main time{grid-column:1;grid-row:2} .education-logo{grid-column:2;grid-row:1 / span 2;width:68px;height:68px} }
-    @media (max-width:600px) { .topbar .wrap{gap:8px} .brand{gap:7px;font-size:17px} .mark{width:32px;height:32px} nav{gap:8px;font-size:17px} }
-    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} }
+    @media (max-width:600px) { .topbar .wrap{gap:8px} .brand{gap:6px} .brand a{display:none} .mark{width:30px;height:30px} nav{gap:9px;font-size:14px} .theme-toggle{width:30px;height:30px} }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme]) { --paper:#16131e; --white:#211c2f; --ink:#ece9f3; --muted:#a79eba; --line:#322c43; --line-strong:#3d3554; --nav-ink:#beb5d6; --art-bg:#231e33; --thumb-bg:#2a2440; --pill-bg:#ffffff12; --accent:#a99ce6; --green:#453a6b; --green-text:#b3a8e3; --footer-link:#8f83b8; color-scheme:dark; }
+    }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .exp.ongoing .role::before{animation:none} .paper-image img{transition:none} .reveal-ready .paper, .reveal-ready .exp, .reveal-ready .education-main { opacity:1; transform:none; transition:none; } }
+    @media print {
+      :root, html[data-theme="dark"] { --paper:#fff; --white:#fff; --ink:#000; --muted:#4a4454; --line:#d8d2e2; --line-strong:#c9c2d6; --nav-ink:#333; --art-bg:#fff; --thumb-bg:#f0edf6; --pill-bg:#fff; --accent:#514071; --green:#514071; --green-text:#514071; --footer-link:#999; color-scheme:light; }
+      body { font:11pt/1.55 var(--font-sans); }
+      .topbar, .work-rail, .playground, .theme-toggle, .photo-tip, .photo-zones, .hero-links { display:none !important; }
+      .hero { padding:0 0 16pt; grid-template-columns:minmax(0,1fr) 200px; }
+      h1 { font-size:30pt; }
+      .hero-photo img { width:100%; height:auto; }
+      section.content, .experience, .education { padding:14pt 0; }
+      .paper { padding:12pt 0; break-inside:avoid; }
+      .paper, .exp, .education-main { break-inside:avoid; }
+      .paper-links a::after { content:" (" attr(href) ")"; font-size:8.5pt; color:#4a4454; }
+      footer { background:#fff; color:#000; border-top:1.5pt solid #000; }
+      footer a { color:#000; border:0; }
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="wrap">
-      <a class="brand" href="#top" aria-label="Jingbo Wang, back to top"><span class="mark">J</span>JINGBO WANG</a>
+      <div class="brand"><button class="mark" type="button" id="mark-toggle" aria-label="Switch mascot" aria-pressed="false"><img class="mark-img" src="images/chiikawa-mark.png" alt="" width="38" height="38"><img class="mark-img mark-img--alt" src="images/gengar-mark.png" alt="" width="38" height="38"></button><a href="#top" aria-label="Jingbo Wang, back to top">JINGBO WANG</a></div>
       <nav aria-label="Main navigation"><a href="#about">About</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#misc">Misc</a><a href="#contact">Contact</a></nav>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
     </div>
   </header>
   <main id="top" class="wrap">
@@ -110,36 +208,36 @@
       <h1>Jingbo <em>Wang</em></h1>
       <div class="hero-copy">
         <p class="hero-intro">Pushing the boundaries of the world through robotics.</p>
-        <p class="hero-detail">I am Jingbo Wang, a forth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. </p>
-        <!-- <p class="hero-detail">I am Jingbo Wang, a forth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. I work closely with <a href="https://songwxuan.github.io/">Wenxuan Song</a>, whose guidance and support have been invaluable to my research.</p> -->
-        <div class="hero-links"><a class="pill primary" href="mailto:jbobowang@gmail.com">jbobowang@gmail.com <span aria-hidden="true">↗</span></a><a class="pill" href="https://scholar.google.com/citations?user=8l7kt3QAAAAJ&amp;hl=zh-CN">Google Scholar <span aria-hidden="true">↗</span></a><a class="pill" href="https://github.com/Jbo-Wang">GitHub <span aria-hidden="true">↗</span></a></div>
+        <p class="hero-detail">I am Jingbo Wang, a fourth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage" target="_blank" rel="noopener">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. </p>
+        <!-- <p class="hero-detail">I am Jingbo Wang, a fourth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage" target="_blank" rel="noopener">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. I work closely with <a href="https://songwxuan.github.io/" target="_blank" rel="noopener">Wenxuan Song</a>, whose guidance and support have been invaluable to my research.</p> -->
+        <div class="hero-links"><a class="pill primary" href="mailto:jbobowang@gmail.com">jbobowang@gmail.com <span aria-hidden="true">↗</span></a><a class="pill" href="https://scholar.google.com/citations?user=8l7kt3QAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a><a class="pill" href="https://github.com/Jbo-Wang" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></div>
       </div>
-      <figure class="hero-photo"><button id="next-photo" type="button" aria-label="Show next photo"><img id="profile-photo" src="images/self2.jpg" alt="Jingbo Wang with a robot"></button><figcaption aria-live="polite"><span id="photo-caption">I am the right one.</span></figcaption></figure>
+      <figure class="hero-photo"><button id="next-photo" type="button" aria-label="Show next photo"><img id="profile-photo" src="images/self2.jpg" alt="Jingbo Wang with a robot" width="960" height="1280" fetchpriority="high"><span class="photo-tip" id="photo-tip" aria-hidden="true"></span></button><figcaption aria-live="polite"><span id="photo-caption">I am the right one.</span></figcaption></figure>
     </div>
     <section class="playground" id="playground" aria-labelledby="playground-title">
       <h2 id="playground-title">Jingbo Gym</h2>
-      <div class="hero-art"><iframe src="robot-reference.html" title="Interactive AgileX Piper X and ARX R5a arms with JBO, Chiikawa and a football"></iframe></div>
+      <div class="hero-art"><iframe src="robot-reference.html?v=2" title="Interactive AgileX Piper X and ARX R5a arms with JBO, Chiikawa and a football" loading="lazy"></iframe></div>
     </section>
     <section class="content" id="research">
       <div class="section-head"><h2>Selected work</h2><p class="section-note">* Equal contribution</p></div>
       <div class="paper-list">
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2610.02054"><img src="images/uniwam.png" alt="UniWAM research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2610.02054">UniWAM: Unified World-Action Model</a></h3><p class="authors">Jiayi Chen*, Wenxuan Song*, <strong>Jingbo Wang</strong>*, Shuai Zhou, Xicheng Gong, Zehua Fan, Ziyang Zhou, Junwu E, Haodong Yan, Fuhao Li, Qize Yu, Xu Huang, Pengwei Wang, Wen Chen, Shunbo Zhou, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2610.02054">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2609.39526"><img src="images/df.png" alt="DF research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2609.39526">Discrete Forcing: Infusing Discrete Guidance into Continuous Denoising for Few-Step Action Experts</a></h3><p class="authors"><strong>Jingbo Wang</strong>, Wenxuan Song, Wenhao Yu, Han Zhao, Xi Wang, Jiayi Chen, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2609.39526">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2602.17259"><img src="images/frappe.png" alt="FRAPPE research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2602.17259">FRAPPE: Infusing World Modeling into Generalist Policies via Multiple Future Representation Alignment</a></h3><p class="authors">Han Zhao*, <strong>Jingbo Wang</strong>*, Wenxuan Song*, Shuai Chen, Yang Liu, Yan Wang, Haoang Li, Donglin Wang</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2602.17259">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2510.12276"><img src="images/spatialforcing.png" alt="Spatial Forcing research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2510.12276">Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model</a></h3><p class="authors">Fuhao Li, Wenxuan Song, Han Zhao, <strong>Jingbo Wang</strong>, Pengxiang Ding, Donglin Wang, Long Zeng, Haoang Li</p><p class="status">ICLR 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2510.12276">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.26320"><img src="images/DFM.png" alt="DFM-VLA research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.26320">DFM-VLA: Iterative Action Refinement for Robot Manipulation via Discrete Flow Matching</a></h3><p class="authors">Jiayi Chen, Wenxuan Song, <strong>Jingbo Wang</strong>, Shuai Chen, Zhijun Li, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.26320">paper ↗</a></div></div></article>
-        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.25661"><img src="images/fastd.png" alt="Fast-dVLA research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.25661">Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance</a></h3><p class="authors">Wenxuan Song, Jiayi Chen, Shuai Chen, <strong>Jingbo Wang</strong>, Pengxiang Ding, Han Zhao, Yikai Qin, Xinhu Zheng, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">ECCV 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.25661">paper ↗</a></div></div></article>
-        <!-- <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.19370"><img src="images/VAMPO.png" alt="VAMPO research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.19370">VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models</a></h3><p class="authors">Zirui Ge, Pengxiang Ding, Baohua Yin, Qishen Wang, Zhiyong Xie, Yemin Wang, <strong>Jingbo Wang</strong>, et al.</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.19370">paper ↗</a></div></div></article> -->
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2610.02054" target="_blank" rel="noopener"><img src="images/uniwam.jpg" alt="UniWAM research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2610.02054" target="_blank" rel="noopener">UniWAM: Unified World-Action Model</a></h3><p class="authors">Jiayi Chen*, Wenxuan Song*, <strong>Jingbo Wang</strong>*, Shuai Zhou, Xicheng Gong, Zehua Fan, Ziyang Zhou, Junwu E, Haodong Yan, Fuhao Li, Qize Yu, Xu Huang, Pengwei Wang, Wen Chen, Shunbo Zhou, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2610.02054" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2609.39526" target="_blank" rel="noopener"><img src="images/df.png" alt="DF research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2609.39526" target="_blank" rel="noopener">Discrete Forcing: Infusing Discrete Guidance into Continuous Denoising for Few-Step Action Experts</a></h3><p class="authors"><strong>Jingbo Wang</strong>, Wenxuan Song, Wenhao Yu, Han Zhao, Xi Wang, Jiayi Chen, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2609.39526" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2602.17259" target="_blank" rel="noopener"><img src="images/frappe.png" alt="FRAPPE research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2602.17259" target="_blank" rel="noopener">FRAPPE: Infusing World Modeling into Generalist Policies via Multiple Future Representation Alignment</a></h3><p class="authors">Han Zhao*, <strong>Jingbo Wang</strong>*, Wenxuan Song*, Shuai Chen, Yang Liu, Yan Wang, Haoang Li, Donglin Wang</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2602.17259" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2510.12276" target="_blank" rel="noopener"><img src="images/spatialforcing.png" alt="Spatial Forcing research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2510.12276" target="_blank" rel="noopener">Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model</a></h3><p class="authors">Fuhao Li, Wenxuan Song, Han Zhao, <strong>Jingbo Wang</strong>, Pengxiang Ding, Donglin Wang, Long Zeng, Haoang Li</p><p class="status">ICLR 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2510.12276" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.26320" target="_blank" rel="noopener"><img src="images/DFM.png" alt="DFM-VLA research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.26320" target="_blank" rel="noopener">DFM-VLA: Iterative Action Refinement for Robot Manipulation via Discrete Flow Matching</a></h3><p class="authors">Jiayi Chen, Wenxuan Song, <strong>Jingbo Wang</strong>, Shuai Chen, Zhijun Li, Haoang Li</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.26320" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.25661" target="_blank" rel="noopener"><img src="images/fastd.png" alt="Fast-dVLA research teaser" loading="lazy" decoding="async"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.25661" target="_blank" rel="noopener">Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance</a></h3><p class="authors">Wenxuan Song, Jiayi Chen, Shuai Chen, <strong>Jingbo Wang</strong>, Pengxiang Ding, Han Zhao, Yikai Qin, Xinhu Zheng, Donglin Wang, Yan Wang, Haoang Li</p><p class="status">ECCV 2026</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.25661" target="_blank" rel="noopener">paper ↗</a></div></div></article>
+        <!-- <article class="paper"><a class="paper-image" href="https://arxiv.org/abs/2603.19370" target="_blank" rel="noopener"><img src="images/VAMPO.png" alt="VAMPO research teaser"></a><div class="paper-info"><h3><a href="https://arxiv.org/abs/2603.19370" target="_blank" rel="noopener">VAMPO: Policy Optimization for Improving Visual Dynamics in Video Action Models</a></h3><p class="authors">Zirui Ge, Pengxiang Ding, Baohua Yin, Qishen Wang, Zhiyong Xie, Yemin Wang, <strong>Jingbo Wang</strong>, et al.</p><p class="status">Preprint</p><div class="paper-links"><a href="https://arxiv.org/abs/2603.19370" target="_blank" rel="noopener">paper ↗</a></div></div></article> -->
       </div>
     </section>
     <section class="experience" id="experience"><div><h2>Experience</h2></div><div class="experience-main">
-      <div class="exp ongoing"><time>Jul 2026 — Present</time><div><h3>Ola Dimensions</h3><p class="role">Intern</p><p>Models</p></div><img class="exp-logo exp-logo--wide" src="images/ola.png" alt="Ola Dimensions logo"></div>
-      <div class="exp ongoing"><time>Feb 2026 — Present</time><div><h3>Tsinghua University · AIR</h3><p class="role">Research Assistant</p><p>World models · Advised by Prof. Yan Wang</p></div><img class="exp-logo" src="images/thu.jpg" alt="Tsinghua University logo"></div>
-      <div class="exp ongoing"><time>Jul 2025 — Present</time><div><h3>HKUST (Guangzhou)</h3><p class="role">Research Assistant</p><p>Vision-language-action models · Advised by Prof. Haoang Li</p></div><img class="exp-logo" src="images/hkust.jpg" alt="HKUST Guangzhou logo"></div>
+      <div class="exp ongoing"><time>Jul 2026 — Present</time><div><h3>Ola Dimensions</h3><p class="role">Intern</p><p>Models</p></div><img class="exp-logo exp-logo--wide" src="images/ola.png" alt="Ola Dimensions logo" loading="lazy" decoding="async"></div>
+      <div class="exp ongoing"><time>Feb 2026 — Present</time><div><h3>Tsinghua University · AIR</h3><p class="role">Research Assistant</p><p>World models · Advised by Prof. Yan Wang</p></div><img class="exp-logo" src="images/thu.jpg" alt="Tsinghua University logo" loading="lazy" decoding="async"></div>
+      <div class="exp ongoing"><time>Jul 2025 — Present</time><div><h3>HKUST (Guangzhou)</h3><p class="role">Research Assistant</p><p>Vision-language-action models · Advised by Prof. Haoang Li</p></div><img class="exp-logo" src="images/hkust.jpg" alt="HKUST Guangzhou logo" loading="lazy" decoding="async"></div>
       <!-- <div class="exp"><time>Jan 2026 — Present</time><div><h3>OpenHelix Team</h3><p class="role">Member</p><p>Robotics</p></div></div> -->
-      <div class="exp"><time>May 2025 — Jun 2026</time><div><h3>National Undergraduate Training Program for Innovation</h3><p class="role">Project Leader</p><p>Deep learning for surgical instrument recognition</p></div><img class="exp-logo" src="images/scut.jpg" alt="South China University of Technology emblem"></div>
+      <div class="exp"><time>May 2025 — Jun 2026</time><div><h3>National Undergraduate Training Program for Innovation</h3><p class="role">Project Leader</p><p>Deep learning for surgical instrument recognition</p></div><img class="exp-logo" src="images/scut.jpg" alt="South China University of Technology emblem" loading="lazy" decoding="async"></div>
     </div></section>
-    <section class="education"><div><h2>Education</h2></div><div class="education-main"><div><h3>South China University of Technology</h3><p>B.Eng. in Computer Science · Full English Teaching Class</p><p class="education-stats"><span>GPA: 3.92</span><span>Rank: 2/34</span></p></div><time>Sep 2023 — Jun 2027 (expected)</time><img class="education-logo" src="images/scut.jpg" alt="South China University of Technology emblem"></div></section>
+    <section class="education"><div><h2>Education</h2></div><div class="education-main"><div><h3>South China University of Technology</h3><p>B.Eng. in Computer Science · Full English Teaching Class</p><p class="education-stats"><span>GPA: 3.92</span><span>Rank: 2/34</span></p></div><time>Sep 2023 — Jun 2027 (expected)</time><img class="education-logo" src="images/scut.jpg" alt="South China University of Technology emblem" loading="lazy" decoding="async"></div></section>
     <section class="misc" id="misc">
       <h2>Miscellanea</h2>
       <ol>
@@ -148,21 +246,174 @@
       </ol>
     </section>
   </main>
-  <footer id="contact"><div class="wrap"><div><h2>Let's make things move</h2></div><div class="right"><a href="mailto:jbobowang@gmail.com">jbobowang@gmail.com ↗</a><p class="site-credit">Thanks to my bro <a href="https://www.shuai-zhou.com/">Shuai Zhou</a> for the idea.</p><p>© Jingbo Wang</p></div></div></footer>
+  <nav class="work-rail" id="work-rail" aria-label="Selected work navigation"></nav>
+  <footer id="contact"><div class="wrap"><div><h2>Let's make things move</h2></div><div class="right"><a href="mailto:jbobowang@gmail.com">jbobowang@gmail.com ↗</a><p class="site-credit">Thanks to my bro <a href="https://www.shuai-zhou.com/" target="_blank" rel="noopener">Shuai Zhou</a> for the idea.</p><p>© Jingbo Wang</p></div></div></footer>
   <script>
+    const gymFrame = document.querySelector('.hero-art iframe');
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    const topbar = document.querySelector('.topbar');
+    function syncGymTheme() {
+      gymFrame?.contentWindow?.postMessage('jw-theme:' + document.documentElement.dataset.theme, '*');
+    }
+    if (gymFrame) gymFrame.addEventListener('load', syncGymTheme);
+    if (gymFrame) {
+      new IntersectionObserver(([entry]) => {
+        gymFrame.contentWindow?.postMessage('jw-visible:' + entry.isIntersecting, '*');
+      }, { rootMargin: '160px' }).observe(gymFrame);
+    }
+    let lastScrollY = scrollY;
+    const onScroll = () => {
+      topbar.classList.toggle('is-scrolled', scrollY > 12);
+      // On small screens the bar fades out while scrolling down and eases
+      // back as soon as you scroll up, keeping the page edge-to-edge.
+      const delta = scrollY - lastScrollY;
+      if (scrollY > 140 && delta > 4) topbar.classList.add('is-hidden');
+      else if (delta < -4 || scrollY <= 140) topbar.classList.remove('is-hidden');
+      lastScrollY = scrollY;
+    };
+    onScroll();
+    addEventListener('scroll', onScroll, { passive: true });
+    const mark = document.getElementById('mark-toggle');
+    try {
+      if (localStorage.getItem('mascot') === 'gengar') {
+        mark.classList.add('is-alt');
+        mark.setAttribute('aria-pressed', 'true');
+      }
+    } catch (e) {}
+    mark.addEventListener('click', () => {
+      const alt = mark.classList.toggle('is-alt');
+      mark.setAttribute('aria-pressed', String(alt));
+      try { localStorage.setItem('mascot', alt ? 'gengar' : 'chiikawa'); } catch (e) {}
+    });
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      document.documentElement.dataset.theme = next;
+      themeColorMeta.content = next === 'dark' ? '#16131e' : '#f8f6fc';
+      syncGymTheme();
+    });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+      let stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (e) {}
+      if (stored !== 'light' && stored !== 'dark') {
+        document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';
+        themeColorMeta.content = event.matches ? '#16131e' : '#f8f6fc';
+        syncGymTheme();
+      }
+    });
+    // Side rail for the Selected work list: appears while the section is on
+    // screen, tracks the paper being read, and jumps on click.
+    (function () {
+      const rail = document.getElementById('work-rail');
+      const section = document.getElementById('research');
+      if (!rail || !section) return;
+      const papers = Array.from(section.querySelectorAll('.paper'));
+      if (!papers.length) return;
+      const links = papers.map((paper, index) => {
+        const name = paper.querySelector('h3').textContent.split(':')[0].trim();
+        const link = document.createElement('a');
+        link.href = '#research';
+        link.setAttribute('aria-label', name);
+        const tick = document.createElement('span');
+        tick.className = 'tick';
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = name;
+        link.append(tick, tag);
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          paper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        rail.appendChild(link);
+        return link;
+      });
+      const setActive = () => {
+        const probe = innerHeight * 0.42;
+        let current = -1;
+        papers.forEach((paper, index) => {
+          if (paper.getBoundingClientRect().top <= probe) current = index;
+        });
+        links.forEach((link, index) => {
+          link.classList.toggle('is-active', index === current);
+          if (index === current) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      };
+      let railTick = 0;
+      addEventListener('scroll', () => {
+        cancelAnimationFrame(railTick);
+        railTick = requestAnimationFrame(setActive);
+      }, { passive: true });
+      setActive();
+      new IntersectionObserver(([entry]) => {
+        rail.classList.toggle('is-in', entry.isIntersecting);
+      }, { rootMargin: '-16% 0px -26% 0px' }).observe(section);
+    })();
+    // Reveal rows as they enter the viewport (progressive enhancement:
+    // the page stays fully visible without JavaScript).
+    (function () {
+      const targets = document.querySelectorAll('.paper, .exp, .education-main');
+      if (!targets.length || !('IntersectionObserver' in window)) return;
+      document.documentElement.classList.add('reveal-ready');
+      const reveal = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            reveal.unobserve(entry.target);
+          }
+        }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      targets.forEach((target) => reveal.observe(target));
+    })();
     const photos = [
-      { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.' },
-      { src: 'images/self.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the left one.' },
+      { src: 'images/self2.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the right one.', zones: ['bot', 'me'], tips: { me: 'Yes, this is me.', bot: 'This is a bot.' } },
+      { src: 'images/self.jpg', alt: 'Jingbo Wang with a robot', caption: 'I am the left one.', zones: ['me', 'bot'], tips: { me: 'Also me.', bot: 'Still a bot.' } },
     ];
     let photoIndex = 0;
+    const hoverable = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const photoTip = document.querySelector('#photo-tip');
+    const photoCaption = document.querySelector('#photo-caption');
+    const setCaption = () => {
+      photoCaption.textContent = photos[photoIndex].caption;
+    };
     document.querySelector('#next-photo').addEventListener('click', () => {
       photoIndex = (photoIndex + 1) % photos.length;
       const photo = photos[photoIndex];
       const image = document.querySelector('#profile-photo');
       image.src = photo.src;
       image.alt = photo.alt;
-      document.querySelector('#photo-caption').textContent = photo.caption;
+      setCaption();
     });
+    if (hoverable) {
+      const photoButton = document.getElementById('next-photo');
+      let activeSide = null;
+      const showTip = (side) => {
+        const photo = photos[photoIndex];
+        photoTip.textContent = photo.tips[photo.zones[side]];
+        photoTip.style.left = side === 0 ? '25%' : '75%';
+        photoTip.classList.add('is-on');
+      };
+      // pointermove is more reliable than pointerenter across devices and
+      // naturally handles crossing between the two halves. The caption
+      // below the photo stays untouched — the bubble is the whole egg.
+      photoButton.addEventListener('pointermove', (event) => {
+        const rect = photoButton.getBoundingClientRect();
+        const side = event.clientX - rect.left < rect.width / 2 ? 0 : 1;
+        if (side !== activeSide) {
+          activeSide = side;
+          showTip(side);
+        }
+      });
+      photoButton.addEventListener('pointerleave', () => {
+        activeSide = null;
+        photoTip.classList.remove('is-on');
+      });
+      photoButton.addEventListener('click', () => {
+        // The pointer may stay over the same half while switching photos, so
+        // the bubble has to be refreshed for the new photo's line-up.
+        if (activeSide !== null) showTip(activeSide);
+      });
+    }
   </script>
 </body>
 </html>
