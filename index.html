@@ -97,8 +97,7 @@
     .hero-photo { width:100%; margin:0; }
     .hero-photo button { display:block; width:100%; padding:0; border:0; background:none; cursor:pointer; position:relative; }
     .hero-photo button:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
-    .photo-zones { position:absolute; inset:0; display:flex; }
-    .photo-zone { flex:1; cursor:help; }
+    .hero-photo button:hover { cursor:help; }
     .photo-tip { position:absolute; top:23%; left:25%; z-index:2; transform:translate(-50%,10px); opacity:0; pointer-events:none; padding:9px 16px; border-radius:999px; background:var(--green); color:#fff; font-size:19px; font-weight:650; white-space:nowrap; box-shadow:0 12px 26px #51407138; transition:opacity .25s ease, transform .25s ease; }
     .photo-tip.is-on { opacity:1; transform:translate(-50%,0); }
     .hero-photo img { display:block; width:100%; height:465px; object-fit:cover; object-position:48% 28%; border-radius:4px; }
@@ -189,7 +188,7 @@
         <!-- <p class="hero-detail">I am Jingbo Wang, a fourth-year undergraduate student at South China University of Technology (SCUT). Currently, I am an intern at the Hong Kong University of Science and Technology (Guangzhou), under the supervision of <a href="https://sites.google.com/view/haoangli/homepage">Haoang Li</a>. I am also a research assistant at AIR, Tsinghua University. I work closely with <a href="https://songwxuan.github.io/">Wenxuan Song</a>, whose guidance and support have been invaluable to my research.</p> -->
         <div class="hero-links"><a class="pill primary" href="mailto:jbobowang@gmail.com">jbobowang@gmail.com <span aria-hidden="true">↗</span></a><a class="pill" href="https://scholar.google.com/citations?user=8l7kt3QAAAAJ&amp;hl=zh-CN">Google Scholar <span aria-hidden="true">↗</span></a><a class="pill" href="https://github.com/Jbo-Wang">GitHub <span aria-hidden="true">↗</span></a></div>
       </div>
-      <figure class="hero-photo"><button id="next-photo" type="button" aria-label="Show next photo"><img id="profile-photo" src="images/self2.jpg" alt="Jingbo Wang with a robot" width="960" height="1280" fetchpriority="high"><span class="photo-zones" aria-hidden="true"><span class="photo-zone"></span><span class="photo-zone"></span></span><span class="photo-tip" id="photo-tip" aria-hidden="true"></span></button><figcaption aria-live="polite"><span id="photo-caption">I am the right one.</span></figcaption></figure>
+      <figure class="hero-photo"><button id="next-photo" type="button" aria-label="Show next photo"><img id="profile-photo" src="images/self2.jpg" alt="Jingbo Wang with a robot" width="960" height="1280" fetchpriority="high"><span class="photo-tip" id="photo-tip" aria-hidden="true"></span></button><figcaption aria-live="polite"><span id="photo-caption">I am the right one.</span></figcaption></figure>
     </div>
     <section class="playground" id="playground" aria-labelledby="playground-title">
       <h2 id="playground-title">Jingbo Gym</h2>
@@ -298,29 +297,34 @@
       setCaption();
     });
     if (hoverable) {
-      let hoveredZone = null;
-      const showTip = (index) => {
-        const who = photos[photoIndex].zones[index];
+      const photoButton = document.getElementById('next-photo');
+      let activeSide = null;
+      const showTip = (side) => {
+        const who = photos[photoIndex].zones[side];
         photoTip.textContent = TIPS[who];
-        photoTip.style.left = index === 0 ? '25%' : '75%';
+        photoTip.style.left = side === 0 ? '25%' : '75%';
         photoTip.classList.add('is-on');
         photoCaption.textContent = TIPS[who];
       };
-      document.querySelectorAll('.photo-zone').forEach((zone, index) => {
-        zone.addEventListener('pointerenter', () => {
-          hoveredZone = index;
-          showTip(index);
-        });
-        zone.addEventListener('pointerleave', () => {
-          hoveredZone = null;
-          photoTip.classList.remove('is-on');
-          setCaption();
-        });
+      // pointermove is more reliable than pointerenter across devices and
+      // naturally handles crossing between the two halves.
+      photoButton.addEventListener('pointermove', (event) => {
+        const rect = photoButton.getBoundingClientRect();
+        const side = event.clientX - rect.left < rect.width / 2 ? 0 : 1;
+        if (side !== activeSide) {
+          activeSide = side;
+          showTip(side);
+        }
       });
-      document.querySelector('#next-photo').addEventListener('click', () => {
-        // The pointer may stay inside a zone while switching photos, so the
-        // bubble has to be refreshed for the new photo's line-up.
-        if (hoveredZone !== null) showTip(hoveredZone);
+      photoButton.addEventListener('pointerleave', () => {
+        activeSide = null;
+        photoTip.classList.remove('is-on');
+        setCaption();
+      });
+      photoButton.addEventListener('click', () => {
+        // The pointer may stay over the same half while switching photos, so
+        // the bubble has to be refreshed for the new photo's line-up.
+        if (activeSide !== null) showTip(activeSide);
       });
     }
   </script>
