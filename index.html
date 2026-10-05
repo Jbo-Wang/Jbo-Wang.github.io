@@ -59,7 +59,7 @@
     a:hover { color:var(--accent); }
     a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
     .wrap { width:min(1180px,calc(100% - 64px)); margin:auto; }
-    .topbar { position:sticky; top:0; z-index:40; border-bottom:1px solid var(--line); background:var(--paper); transition:background-color .4s ease, border-color .4s ease, box-shadow .4s ease; }
+    .topbar { position:sticky; top:0; z-index:40; border-bottom:1px solid var(--line); background:var(--paper); transition:transform .35s ease, opacity .35s ease, background-color .4s ease, border-color .4s ease, box-shadow .4s ease; }
     .topbar.is-scrolled { border-bottom-color:transparent; background:color-mix(in srgb, var(--paper) 78%, transparent); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); box-shadow:0 14px 30px #51407114; }
     .topbar .wrap { min-height:78px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .brand { display:flex; align-items:center; gap:12px; font-size:21px; font-weight:750; letter-spacing:.015em; white-space:nowrap; }
@@ -149,10 +149,10 @@
     footer a { color:#faf7ff; border-bottom:1px solid var(--footer-link); }
     footer .site-credit { max-width:430px; margin:16px 0 8px; font-size:18px; line-height:1.45; }
     @media (max-width:1050px) { .hero{grid-template-columns:1fr} .hero-photo{width:min(100%,435px);justify-self:center} }
-    @media (max-width:820px) { .wrap{width:min(100% - 36px,650px)} .topbar .wrap{min-height:68px;flex-wrap:wrap;gap:8px;padding:12px 0} .theme-toggle{order:1;margin-left:auto} nav{order:2;width:100%;justify-content:space-between;gap:16px} #about,#playground,#research,#experience,#misc,#contact{scroll-margin-top:150px} section.content{padding-top:70px} .experience{padding-top:76px} .education{padding:70px 0 80px} .paper{grid-template-columns:200px minmax(0,1fr);gap:20px;padding:20px} .paper-image img{height:160px} .paper h3{font-size:24px} .exp{grid-template-columns:115px minmax(0,1fr) 140px} .exp-logo{width:68px;height:68px} .exp-logo--wide{width:140px;height:56px} }
-    @media (max-width:600px) { nav{gap:12px;font-size:17px} nav a:last-child{display:none} h1{font-size:clamp(44px,11vw,70px)} .hero{padding:48px 0} .hero-photo{max-width:345px} .hero-photo img{height:360px} .playground{padding-top:46px} .hero-art{height:340px} .paper{grid-template-columns:1fr;gap:16px;padding:18px} .paper-image img{height:165px} .paper h3{font-size:23px} .exp{grid-template-columns:minmax(0,1fr) 68px;gap:5px 12px} .exp.ongoing{padding:18px} .exp time{grid-column:1;grid-row:1} .exp > div{grid-column:1;grid-row:2} .exp-logo{grid-column:2;grid-row:1 / span 2} .exp-logo--wide{grid-column:1 / -1;grid-row:3;justify-self:start;width:180px;height:64px;margin-top:8px} footer .wrap{display:block} footer h2{font-size:35px} footer .right{margin-top:26px} }
+    @media (max-width:820px) { .wrap{width:min(100% - 36px,650px)} .topbar .wrap{min-height:52px;flex-wrap:nowrap;gap:10px;padding:8px 0} .topbar.is-hidden{transform:translateY(-105%);opacity:0} .brand{gap:8px;font-size:16px} .mark{width:30px;height:30px} nav{gap:12px;font-size:15px;font-weight:600;flex:1;justify-content:flex-end;flex-wrap:nowrap} nav a{padding:4px 0} .theme-toggle{width:32px;height:32px} #about,#playground,#research,#experience,#misc,#contact{scroll-margin-top:70px} section.content{padding-top:70px} .experience{padding-top:76px} .education{padding:70px 0 80px} .paper{grid-template-columns:200px minmax(0,1fr);gap:20px;padding:20px} .paper-image img{height:160px} .paper h3{font-size:24px} .exp{grid-template-columns:115px minmax(0,1fr) 140px} .exp-logo{width:68px;height:68px} .exp-logo--wide{width:140px;height:56px} }
+    @media (max-width:600px) { nav a:last-child{display:none} h1{font-size:clamp(44px,11vw,70px)} .hero{padding:48px 0} .hero-photo{max-width:345px} .hero-photo img{height:360px} .playground{padding-top:46px} .hero-art{height:340px} .paper{grid-template-columns:1fr;gap:16px;padding:18px} .paper-image img{height:165px} .paper h3{font-size:23px} .exp{grid-template-columns:minmax(0,1fr) 68px;gap:5px 12px} .exp.ongoing{padding:18px} .exp time{grid-column:1;grid-row:1} .exp > div{grid-column:1;grid-row:2} .exp-logo{grid-column:2;grid-row:1 / span 2} .exp-logo--wide{grid-column:1 / -1;grid-row:3;justify-self:start;width:180px;height:64px;margin-top:8px} footer .wrap{display:block} footer h2{font-size:35px} footer .right{margin-top:26px} }
     @media (max-width:820px) { .education-main{grid-template-columns:minmax(0,1fr) 68px;gap:8px 16px} .education-main time{grid-column:1;grid-row:2} .education-logo{grid-column:2;grid-row:1 / span 2;width:68px;height:68px} }
-    @media (max-width:600px) { .topbar .wrap{gap:8px} .brand{gap:7px;font-size:17px} .mark{width:32px;height:32px} nav{gap:8px;font-size:17px} }
+    @media (max-width:600px) { .topbar .wrap{gap:8px} .brand{gap:6px} .brand a{display:none} .mark{width:30px;height:30px} nav{gap:9px;font-size:14px} .theme-toggle{width:30px;height:30px} }
     @media (prefers-color-scheme: dark) {
       html:not([data-theme]) { --paper:#16131e; --white:#211c2f; --ink:#ece9f3; --muted:#a79eba; --line:#322c43; --line-strong:#3d3554; --nav-ink:#beb5d6; --art-bg:#231e33; --thumb-bg:#2a2440; --pill-bg:#ffffff12; --accent:#a99ce6; --green:#453a6b; --green-text:#b3a8e3; --footer-link:#8f83b8; color-scheme:dark; }
     }
@@ -227,7 +227,16 @@
         gymFrame.contentWindow?.postMessage('jw-visible:' + entry.isIntersecting, '*');
       }, { rootMargin: '160px' }).observe(gymFrame);
     }
-    const onScroll = () => topbar.classList.toggle('is-scrolled', scrollY > 12);
+    let lastScrollY = scrollY;
+    const onScroll = () => {
+      topbar.classList.toggle('is-scrolled', scrollY > 12);
+      // On small screens the bar fades out while scrolling down and eases
+      // back as soon as you scroll up, keeping the page edge-to-edge.
+      const delta = scrollY - lastScrollY;
+      if (scrollY > 140 && delta > 4) topbar.classList.add('is-hidden');
+      else if (delta < -4 || scrollY <= 140) topbar.classList.remove('is-hidden');
+      lastScrollY = scrollY;
+    };
     onScroll();
     addEventListener('scroll', onScroll, { passive: true });
     const mark = document.getElementById('mark-toggle');
