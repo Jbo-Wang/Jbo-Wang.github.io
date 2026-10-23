@@ -36,6 +36,7 @@
     .arm-labels strong { display:block; color:#36313d; font-size:22px; font-weight:650; letter-spacing:0; }
     html[data-theme="dark"] .arm-labels strong { color:#ece9f3; }
     .playground-loading { position:fixed; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; pointer-events:none; color:#5a5361; font:17px/1.3 system-ui,sans-serif; transition:opacity .5s ease, visibility 0s .5s; }
+    .playground-loading[hidden] { display:none; }
     .playground-loading.is-done { opacity:0; visibility:hidden; }
     .load-bar { width:120px; height:3px; border-radius:2px; background:rgba(111,96,184,.18); overflow:hidden; }
     #load-bar-fill { display:block; height:100%; width:0; border-radius:2px; background:#6f60b8; transition:width .3s ease; }
@@ -46,7 +47,7 @@
     @media (prefers-reduced-motion:reduce) { .load-ring { animation:none; border-top-color:rgba(111,96,184,.22); } }
     html[data-theme="dark"] .playground-loading { color:#a79eba; }
     html[data-theme="dark"] .load-ring { border-color:rgba(169,156,230,.25); border-top-color:#a99ce6; }
-    .robot-load-error { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:3; box-sizing:border-box; width:max-content; max-width:calc(100% - 24px); margin:0; padding:10px 15px; border-radius:12px; background:rgba(255,252,255,.92); color:#8a4450; font:15px/1.4 system-ui,sans-serif; text-align:center; }
+    .robot-load-error { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3; box-sizing:border-box; width:max-content; max-width:calc(100% - 24px); margin:0; padding:10px 15px; border-radius:12px; background:rgba(255,252,255,.92); color:#8a4450; font:15px/1.4 system-ui,sans-serif; text-align:center; }
     html[data-theme="dark"] .robot-load-error { background:rgba(38,32,56,.92); color:#e0a9b4; }
     @media (max-width:600px) { .playground-hint { top:8px; border-radius:16px; font-size:14px; } .arm-labels { bottom:10px; font-size:17px; } .arm-labels strong { font-size:19px; } }
   </style>
@@ -91,6 +92,6 @@
       new MutationObserver(settle).observe(host, { attributes: true, attributeFilter: ['data-playground'] });
     })();
   </script>
-  <script type="module" src="./assets/js/robot-companion.js?v=63"></script>
+  <script type="module" src="./assets/js/robot-companion.js?v=64"></script>
 </body>
 </html>

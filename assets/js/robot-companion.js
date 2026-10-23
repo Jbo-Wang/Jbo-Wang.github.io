@@ -10,8 +10,11 @@ import { r5a } from './r5a-profile.js?v=16';
 const host = document.querySelector('.robot-companion');
 if (host) mountRobot(host).catch((error) => {
   host.dataset.playground = 'error';
-  host.insertAdjacentHTML('beforeend', '<p class="robot-load-error">Robot playground could not load. Please refresh the page.</p>');
-  console.warn('Robot playground unavailable:', error.message);
+  const message = /WebGL context|context lost/i.test(error.message)
+    ? 'This browser cannot start WebGL. Try Chrome or Edge with graphics acceleration enabled.'
+    : 'Robot models could not load. Please refresh the page.';
+  host.insertAdjacentHTML('beforeend', `<p class="robot-load-error">${message}</p>`);
+  console.warn('Robot playground unavailable:', error);
 });
 
 async function mountRobot(container) {
